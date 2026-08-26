@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>AI Study Assistant</title>
+
+    <link rel="stylesheet"
+        href="ai_assistant.css">
+
+    <script src="ai_assistant.js"
+        defer></script>
+</head>
+
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header>
+
+        <nav>
+
+            <div class="logo">
+                🤖 AI Study
+            </div>
+
+            <div class="nav-links">
+
+                <a href="#dashboard">
+                    Dashboard
+                </a>
+
+                <a href="#subjects">
+                    Subjects
+                </a>
+
+                <a href="#quiz">
+                    Quiz
+                </a>
+
+                <a href="#progress">
+                    Progress
+                </a>
+
+            </div>
+
+            <button id="theme-btn">
+                🌙 Dark
+            </button>
+
+        </nav>
+
+    </header>
+
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <span class="badge">
+                🤖 AI POWERED LEARNING
+            </span>
+
+            <h1>
+                Study Smarter.
+                <span>Learn Faster.</span>
+            </h1>
+
+            <p>
+                Your personal study assistant for
+                DSA, DBMS, OS, CN, COA and Python.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#subjects"
+                    class="primary-btn">
+                    Start Studying →
+                </a>
+
+                <a href="#quiz"
+                    class="secondary-btn">
+                    Take Quiz
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= DASHBOARD ================= -->
+
+    <section class="dashboard"
+        id="dashboard">
+
+        <div class="section-heading">
+
+            <span>
+                YOUR DASHBOARD
+            </span>
+
+            <h2>
+                Welcome back 👋
+            </h2>
+
+            <p>
+                Track your learning journey.
+            </p>
+
+        </div>
+
+
+        <div class="dashboard-grid">
+
+
+            <div class="dashboard-card">
+
+                <div class="dashboard-icon">
+                    🔥
+                </div>
+
+                <div>
+
+                    <p>
+                        Study Streak
+                    </p>
+
+                    <h3>
+                        7 Days
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-card">
+
+                <div class="dashboard-icon">
+                    📚
+                </div>
+
+                <div>
+
+                    <p>
+                        Completed
+                    </p>
+
+                    <h3 id="dashboard-completed">
+                        0
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-card">
+
+                <div class="dashboard-icon">
+                    🎯
+                </div>
+
+                <div>
+
+                    <p>
+                        Quiz Score
+                    </p>
+
+                    <h3 id="dashboard-score">
+                        0%
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-card">
+
+                <div class="dashboard-icon">
+                    📈
+                </div>
+
+                <div>
+
+                    <p>
+                        Overall Progress
+                    </p>
+
+                    <h3 id="dashboard-progress">
+                        0%
+                    </h3>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- AI RECOMMENDATION -->
+
+        <div class="ai-card">
+
+            <div class="ai-avatar">
+                🤖
+            </div>
+
+            <div class="ai-info">
+
+                <span>
+                    AI RECOMMENDATION
+                </span>
+
+                <h3 id="recommendation-title">
+                    Start with Arrays 🚀
+                </h3>
+
+                <p id="recommendation-text">
+                    Begin your learning journey
+                    with the fundamentals of DSA.
+                </p>
+
+                <a href="#subjects"
+                    class="primary-btn">
+                    Start Learning →
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= SUBJECTS ================= -->
+
+    <section class="subjects"
+        id="subjects">
+
+        <div class="section-heading">
+
+            <span>
+                LEARNING
+            </span>
+
+            <h2>
+                Your Subjects
+            </h2>
+
+            <p>
+                Choose a subject and start learning.
+            </p>
+
+        </div>
+
+
+        <div class="subject-container">
+
+
+            <button class="subject-card"
+                data-subject="DSA">
+
+                <div class="subject-icon">
+                    🧠
+                </div>
+
+                <h3>
+                    DSA
+                </h3>
+
+                <p>
+                    Data Structures & Algorithms
+                </p>
+
+                <span>
+                    Explore →
+                </span>
+
+            </button>
+
+
+            <button class="subject-card"
+                data-subject="COA">
+
+                <div class="subject-icon">
+                    💻
+                </div>
+
+                <h3>
+                    COA
+                </h3>
+
+                <p>
+                    Computer Architecture
+                </p>
+
+                <span>
+                    Explore →
+                </span>
+
+            </button>
+
+
+            <button class="subject-card"
+                data-subject="DBMS">
+
+                <div class="subject-icon">
+                    🗄️
+                </div>
+
+                <h3>
+                    DBMS
+                </h3>
+
+                <p>
+                    Database Management
+                </p>
+
+                <span>
+                    Explore →
+                </span>
+
+            </button>
+
+
+            <button class="subject-card"
+                data-subject="CN">
+
+                <div class="subject-icon">
+                    🌐
+                </div>
+
+                <h3>
+                    CN
+                </h3>
+
+                <p>
+                    Computer Networks
+                </p>
+
+                <span>
+                    Explore →
+                </span>
+
+            </button>
+
+
+            <button class="subject-card"
+                data-subject="OS">
+
+                <div class="subject-icon">
+                    ⚙️
+                </div>
+
+                <h3>
+                    OS
+                </h3>
+
+                <p>
+                    Operating Systems
+                </p>
+
+                <span>
+                    Explore →
+                </span>
+
+            </button>
+
+
+            <button class="subject-card"
+                data-subject="PYTHON">
+
+                <div class="subject-icon">
+                    🐍
+                </div>
+
+                <h3>
+                    Python
+                </h3>
+
+                <p>
+                    Python Programming
+                </p>
+
+                <span>
+                    Explore →
+                </span>
+
+            </button>
+
+        </div>
+
+
+        <!-- DYNAMIC SUBJECT CONTENT -->
+
+        <div id="subject-content"
+            class="subject-content">
+
+            <div class="empty-state">
+
+                <div>
+                    📚
+                </div>
+
+                <h3>
+                    Select a subject
+                </h3>
+
+                <p>
+                    Choose a subject above
+                    to start learning.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= QUIZ ================= -->
+
+    <section class="quiz"
+        id="quiz">
+
+        <div class="section-heading">
+
+            <span>
+                TEST YOUR KNOWLEDGE
+            </span>
+
+            <h2>
+                Quick Quiz 🧠
+            </h2>
+
+            <p>
+                Challenge yourself.
+            </p>
+
+        </div>
+
+
+        <div class="quiz-test">
+
+            <div class="quiz-top">
+
+                <span id="question-number">
+                    Question 1
+                </span>
+
+                <span id="score">
+                    Score: 0
+                </span>
+
+            </div>
+
+
+            <div class="quiz-question">
+
+                <h3 id="question-text">
+                </h3>
+
+            </div>
+
+
+            <div id="options">
+
+            </div>
+
+
+            <button id="next-btn">
+                Next Question →
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= PROGRESS ================= -->
+
+    <section class="progress"
+        id="progress">
+
+        <div class="section-heading">
+
+            <span>
+                YOUR JOURNEY
+            </span>
+
+            <h2>
+                Your Progress 📈
+            </h2>
+
+            <p>
+                Keep learning and keep growing.
+            </p>
+
+        </div>
+
+
+        <div class="progress-container">
+
+            <div class="progress-header">
+
+                <h3>
+                    Overall Progress
+                </h3>
+
+                <strong id="progress-percent">
+                    0%
+                </strong>
+
+            </div>
+
+
+            <div class="progress-bar">
+
+                <div id="progress-fill"
+                    class="progress-fill">
+                </div>
+
+            </div>
+
+
+            <p id="progress-text">
+                0 / 35 Topics Completed
+            </p>
+
+        </div>
+
+
+        <div class="progress-stats">
+
+
+            <div class="progress-box">
+
+                <span>
+                    ✅
+                </span>
+
+                <p>
+                    Completed
+                </p>
+
+                <h3 id="completed-count">
+                    0
+                </h3>
+
+            </div>
+
+
+            <div class="progress-box">
+
+                <span>
+                    📚
+                </span>
+
+                <p>
+                    Remaining
+                </p>
+
+                <h3 id="remaining-count">
+                    35
+                </h3>
+
+            </div>
+
+
+            <div class="progress-box">
+
+                <span>
+                    🎯
+                </span>
+
+                <p>
+                    Quiz Score
+                </p>
+
+                <h3 id="progress-score">
+                    0%
+                </h3>
+
+            </div>
+
+        </div>
+
+
+        <button id="reset-progress">
+            Reset Progress
+        </button>
+
+    </section>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="footer-logo">
+            🤖 AI Study Assistant
+        </div>
+
+        <p>
+            Study smarter. Learn faster.
+        </p>
+
+        <div class="footer-links">
+
+            <a href="#dashboard">
+                Dashboard
+            </a>
+
+            <a href="#subjects">
+                Subjects
+            </a>
+
+            <a href="#quiz">
+                Quiz
+            </a>
+
+            <a href="#progress">
+                Progress
+            </a>
+
+        </div>
+
+        <p class="copyright">
+            © 2026 AI Study Assistant
+        </p>
+
+    </footer>
+
+</body>
+
+</html>

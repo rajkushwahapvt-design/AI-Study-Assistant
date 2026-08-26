@@ -1,0 +1,1900 @@
+{
+  "DSA": {
+    "description": "Data Structures and Algorithms helps you solve programming problems efficiently.",
+    "topics": [
+      {
+        "name": "Arrays",
+        "difficulty": "Easy",
+        "description": "An array is a linear data structure that stores elements in contiguous memory locations.",
+        "complexity": "Access: O(1), Search: O(n), Insertion: O(n)",
+        "keyPoints": [
+          "Elements are stored using indexes",
+          "Indexing usually starts from 0",
+          "Fast random access is possible",
+          "Insertion and deletion can be expensive"
+        ],
+        "example": "[10, 20, 30, 40, 50]",
+        "practice": {
+          "question": "What is the time complexity of accessing an element by index in an array?",
+          "options": [
+            "O(1)",
+            "O(n)",
+            "O(log n)",
+            "O(n²)"
+          ],
+          "answer": "O(1)"
+        }
+      },
+      {
+        "name": "Strings",
+        "difficulty": "Easy",
+        "description": "A string is a sequence of characters used to represent text.",
+        "complexity": "Access: O(1), Search: O(n)",
+        "keyPoints": [
+          "Strings are sequences of characters",
+          "Strings are commonly used for text processing",
+          "Characters can be accessed using indexes",
+          "String operations may create new strings"
+        ],
+        "example": "\"Hello World\"",
+        "practice": {
+          "question": "Which data type is commonly used to store text?",
+          "options": [
+            "String",
+            "Integer",
+            "Boolean",
+            "Float"
+          ],
+          "answer": "String"
+        }
+      },
+      {
+        "name": "Linked List",
+        "difficulty": "Medium",
+        "description": "A linked list is a linear data structure where nodes are connected using references.",
+        "complexity": "Search: O(n), Insertion: O(1) at known position",
+        "keyPoints": [
+          "Contains nodes",
+          "Each node stores data and a reference",
+          "Nodes are not necessarily stored contiguously",
+          "Insertion and deletion are efficient at known positions"
+        ],
+        "example": "10 → 20 → 30 → NULL",
+        "practice": {
+          "question": "Which part of a linked list node stores the reference to the next node?",
+          "options": [
+            "Pointer",
+            "Index",
+            "Array",
+            "Loop"
+          ],
+          "answer": "Pointer"
+        }
+      },
+      {
+        "name": "Stack",
+        "difficulty": "Easy",
+        "description": "A stack is a linear data structure that follows the Last In First Out principle.",
+        "complexity": "Push: O(1), Pop: O(1), Peek: O(1)",
+        "keyPoints": [
+          "Follows LIFO",
+          "Insertion is called Push",
+          "Deletion is called Pop",
+          "Top element can be accessed using Peek"
+        ],
+        "example": "Push(10) → Push(20) → Pop() → 20",
+        "practice": {
+          "question": "Which principle does a stack follow?",
+          "options": [
+            "FIFO",
+            "LIFO",
+            "FILO only",
+            "Random"
+          ],
+          "answer": "LIFO"
+        }
+      },
+      {
+        "name": "Queue",
+        "difficulty": "Easy",
+        "description": "A queue is a linear data structure that follows the First In First Out principle.",
+        "complexity": "Enqueue: O(1), Dequeue: O(1)",
+        "keyPoints": [
+          "Follows FIFO",
+          "Insertion is called Enqueue",
+          "Deletion is called Dequeue",
+          "Used in scheduling and BFS"
+        ],
+        "example": "10 → 20 → 30 → Front = 10",
+        "practice": {
+          "question": "Which principle does a queue follow?",
+          "options": [
+            "LIFO",
+            "FIFO",
+            "Random",
+            "Binary"
+          ],
+          "answer": "FIFO"
+        }
+      },
+      {
+        "name": "Recursion",
+        "difficulty": "Medium",
+        "description": "Recursion is a technique where a function calls itself to solve smaller instances of a problem.",
+        "complexity": "Depends on the recursive algorithm",
+        "keyPoints": [
+          "A function calls itself",
+          "Requires a base case",
+          "Useful for tree and divide-and-conquer problems",
+          "Can use additional call stack memory"
+        ],
+        "example": "factorial(n) = n × factorial(n - 1)",
+        "practice": {
+          "question": "What prevents infinite recursion?",
+          "options": [
+            "Loop",
+            "Base Case",
+            "Array",
+            "Pointer"
+          ],
+          "answer": "Base Case"
+        }
+      },
+      {
+        "name": "Binary Search",
+        "difficulty": "Medium",
+        "description": "Binary Search finds an element in a sorted array by repeatedly dividing the search space into two halves.",
+        "complexity": "Time: O(log n), Space: O(1)",
+        "keyPoints": [
+          "Array must be sorted",
+          "Search space is divided into halves",
+          "Uses middle element",
+          "Much faster than linear search for large sorted arrays"
+        ],
+        "example": "Search 30 in [10, 20, 30, 40, 50]",
+        "practice": {
+          "question": "What is required before applying binary search on a normal array?",
+          "options": [
+            "Array must be sorted",
+            "Array must contain duplicates",
+            "Array must be empty",
+            "Array must contain strings"
+          ],
+          "answer": "Array must be sorted"
+        }
+      },
+      {
+        "name": "Sorting",
+        "difficulty": "Easy",
+        "description": "Sorting algorithms arrange elements in a particular order.",
+        "complexity": "Depends on algorithm, commonly O(n log n)",
+        "keyPoints": [
+          "Can arrange data ascending or descending",
+          "Bubble Sort is simple but slow",
+          "Merge Sort uses divide and conquer",
+          "Quick Sort is efficient on average"
+        ],
+        "example": "[5, 2, 4, 1] → [1, 2, 4, 5]",
+        "practice": {
+          "question": "Which sorting algorithm commonly has O(n log n) average complexity?",
+          "options": [
+            "Bubble Sort",
+            "Quick Sort",
+            "Linear Search",
+            "Stack"
+          ],
+          "answer": "Quick Sort"
+        }
+      },
+      {
+        "name": "Trees",
+        "difficulty": "Medium",
+        "description": "A tree is a hierarchical non-linear data structure consisting of nodes connected by edges.",
+        "complexity": "Traversal: O(n)",
+        "keyPoints": [
+          "Contains nodes and edges",
+          "Root is the top node",
+          "Nodes can have children",
+          "Used to represent hierarchical data"
+        ],
+        "example": "Root → Left Child + Right Child",
+        "practice": {
+          "question": "Which node is at the top of a tree?",
+          "options": [
+            "Leaf",
+            "Root",
+            "Child",
+            "Edge"
+          ],
+          "answer": "Root"
+        }
+      },
+      {
+        "name": "Binary Search Tree",
+        "difficulty": "Medium",
+        "description": "A Binary Search Tree is a binary tree where smaller values are placed on the left and larger values on the right.",
+        "complexity": "Average Search: O(log n), Worst: O(n)",
+        "keyPoints": [
+          "Each node has at most two children",
+          "Left subtree contains smaller values",
+          "Right subtree contains larger values",
+          "Inorder traversal gives sorted order"
+        ],
+        "example": "50 → Left: 30, Right: 70",
+        "practice": {
+          "question": "Which traversal of a BST produces sorted values?",
+          "options": [
+            "Preorder",
+            "Postorder",
+            "Inorder",
+            "Level Order"
+          ],
+          "answer": "Inorder"
+        }
+      },
+      {
+        "name": "Heap",
+        "difficulty": "Medium",
+        "description": "A heap is a complete binary tree commonly used to implement priority queues.",
+        "complexity": "Insert: O(log n), Delete: O(log n), Peek: O(1)",
+        "keyPoints": [
+          "Complete binary tree",
+          "Can be Min Heap or Max Heap",
+          "Root contains minimum or maximum element",
+          "Used in priority queues and heap sort"
+        ],
+        "example": "Max Heap → Root contains maximum value",
+        "practice": {
+          "question": "Which element is at the root of a Max Heap?",
+          "options": [
+            "Minimum",
+            "Maximum",
+            "Random",
+            "Middle"
+          ],
+          "answer": "Maximum"
+        }
+      },
+      {
+        "name": "Graph",
+        "difficulty": "Medium",
+        "description": "A graph is a non-linear data structure consisting of vertices and edges.",
+        "complexity": "BFS/DFS: O(V + E)",
+        "keyPoints": [
+          "Contains vertices and edges",
+          "Can be directed or undirected",
+          "Can be weighted or unweighted",
+          "BFS and DFS are common graph traversals"
+        ],
+        "example": "A → B → C",
+        "practice": {
+          "question": "Which two components make up a graph?",
+          "options": [
+            "Nodes and Arrays",
+            "Vertices and Edges",
+            "Stacks and Queues",
+            "Keys and Values"
+          ],
+          "answer": "Vertices and Edges"
+        }
+      },
+      {
+        "name": "Dynamic Programming",
+        "difficulty": "Hard",
+        "description": "Dynamic Programming solves problems by breaking them into overlapping subproblems and storing their results.",
+        "complexity": "Depends on the problem",
+        "keyPoints": [
+          "Uses overlapping subproblems",
+          "Stores previously calculated results",
+          "Can use memoization",
+          "Can use tabulation"
+        ],
+        "example": "Fibonacci using DP: dp[n] = dp[n-1] + dp[n-2]",
+        "practice": {
+          "question": "What is one important property of problems solved using dynamic programming?",
+          "options": [
+            "Overlapping Subproblems",
+            "Only Sorting",
+            "Only Graphs",
+            "No Recursion"
+          ],
+          "answer": "Overlapping Subproblems"
+        }
+      },
+      {
+        "name": "Greedy Algorithms",
+        "difficulty": "Medium",
+        "description": "Greedy algorithms make the locally optimal choice at each step.",
+        "complexity": "Depends on the algorithm",
+        "keyPoints": [
+          "Makes locally optimal choices",
+          "Usually does not reconsider previous choices",
+          "Can produce globally optimal solutions for suitable problems",
+          "Used in activity selection and Huffman coding"
+        ],
+        "example": "Activity Selection Problem",
+        "practice": {
+          "question": "What type of choice does a greedy algorithm make?",
+          "options": [
+            "Locally Optimal Choice",
+            "Random Choice",
+            "Worst Choice",
+            "No Choice"
+          ],
+          "answer": "Locally Optimal Choice"
+        }
+      }
+    ],
+    "materials": [
+      "Arrays and Strings Notes",
+      "Linked List Notes",
+      "Stack and Queue Notes",
+      "Recursion Practice",
+      "Binary Search Problems",
+      "Sorting Algorithms",
+      "Tree and BST Notes",
+      "Graph Algorithms",
+      "Dynamic Programming Problems"
+    ]
+  },
+
+  "COA": {
+    "description": "Computer Organization and Architecture explains how computers work internally.",
+    "topics": [
+      {
+        "name": "Computer Fundamentals",
+        "difficulty": "Easy",
+        "description": "Computer fundamentals explain the basic components and working of a computer system.",
+        "complexity": "Conceptual",
+        "keyPoints": [
+          "Input",
+          "Processing",
+          "Output",
+          "Storage"
+        ],
+        "example": "Input → CPU → Output",
+        "practice": {
+          "question": "Which component performs most processing operations?",
+          "options": [
+            "CPU",
+            "Keyboard",
+            "Monitor",
+            "Mouse"
+          ],
+          "answer": "CPU"
+        }
+      },
+      {
+        "name": "Number System",
+        "difficulty": "Easy",
+        "description": "Number systems such as binary, decimal, octal and hexadecimal are used in computing.",
+        "complexity": "Depends on conversion",
+        "keyPoints": [
+          "Binary uses base 2",
+          "Decimal uses base 10",
+          "Octal uses base 8",
+          "Hexadecimal uses base 16"
+        ],
+        "example": "Binary 1010 = Decimal 10",
+        "practice": {
+          "question": "What is the base of the binary number system?",
+          "options": [
+            "2",
+            "8",
+            "10",
+            "16"
+          ],
+          "answer": "2"
+        }
+      },
+      {
+        "name": "Boolean Algebra",
+        "difficulty": "Medium",
+        "description": "Boolean algebra is used to represent and simplify logical expressions.",
+        "complexity": "Conceptual",
+        "keyPoints": [
+          "Uses 0 and 1",
+          "AND operation",
+          "OR operation",
+          "NOT operation"
+        ],
+        "example": "A AND B = A · B",
+        "practice": {
+          "question": "Which values are mainly used in Boolean algebra?",
+          "options": [
+            "0 and 1",
+            "1 and 2",
+            "2 and 3",
+            "5 and 10"
+          ],
+          "answer": "0 and 1"
+        }
+      },
+      {
+        "name": "Logic Gates",
+        "difficulty": "Easy",
+        "description": "Logic gates perform basic logical operations in digital circuits.",
+        "complexity": "Conceptual",
+        "keyPoints": [
+          "AND",
+          "OR",
+          "NOT",
+          "NAND and NOR"
+        ],
+        "example": "AND Gate: 1 AND 1 = 1",
+        "practice": {
+          "question": "Which gate produces the opposite output?",
+          "options": [
+            "AND",
+            "OR",
+            "NOT",
+            "XOR"
+          ],
+          "answer": "NOT"
+        }
+      },
+      {
+        "name": "CPU Organization",
+        "difficulty": "Medium",
+        "description": "CPU organization explains registers, ALU and control unit operations.",
+        "complexity": "Conceptual",
+        "keyPoints": [
+          "ALU",
+          "Control Unit",
+          "Registers",
+          "CPU buses"
+        ],
+        "example": "CPU = ALU + Control Unit + Registers",
+        "practice": {
+          "question": "Which component performs arithmetic and logical operations?",
+          "options": [
+            "ALU",
+            "RAM",
+            "Cache",
+            "Control Unit"
+          ],
+          "answer": "ALU"
+        }
+      },
+      {
+        "name": "Instruction Cycle",
+        "difficulty": "Medium",
+        "description": "The instruction cycle describes how the CPU fetches, decodes and executes instructions.",
+        "complexity": "Conceptual",
+        "keyPoints": [
+          "Fetch",
+          "Decode",
+          "Execute",
+          "Store result"
+        ],
+        "example": "Fetch → Decode → Execute",
+        "practice": {
+          "question": "What is the first major step of an instruction cycle?",
+          "options": [
+            "Execute",
+            "Fetch",
+            "Delete",
+            "Compile"
+          ],
+          "answer": "Fetch"
+        }
+      },
+      {
+        "name": "Memory Organization",
+        "difficulty": "Medium",
+        "description": "Memory organization explains how different types of memory store data.",
+        "complexity": "Conceptual",
+        "keyPoints": [
+          "Registers",
+          "Cache",
+          "RAM",
+          "Secondary storage"
+        ],
+        "example": "Register → Cache → RAM → Storage",
+        "practice": {
+          "question": "Which memory is generally faster?",
+          "options": [
+            "Register",
+            "Hard Disk",
+            "SSD",
+            "DVD"
+          ],
+          "answer": "Register"
+        }
+      },
+      {
+        "name": "Cache Memory",
+        "difficulty": "Medium",
+        "description": "Cache memory is a small and fast memory located close to the CPU.",
+        "complexity": "Very fast access",
+        "keyPoints": [
+          "Located close to CPU",
+          "Stores frequently used data",
+          "Reduces memory access time",
+          "L1 is generally faster than L2 and L3"
+        ],
+        "example": "CPU → L1 Cache → L2 Cache → RAM",
+        "practice": {
+          "question": "Why is cache memory used?",
+          "options": [
+            "To increase access speed",
+            "To replace CPU",
+            "To store files permanently",
+            "To connect networks"
+          ],
+          "answer": "To increase access speed"
+        }
+      },
+      {
+        "name": "Input Output Organization",
+        "difficulty": "Medium",
+        "description": "I/O organization explains how computers communicate with external devices.",
+        "complexity": "Conceptual",
+        "keyPoints": [
+          "Input devices",
+          "Output devices",
+          "I/O controllers",
+          "Interrupts"
+        ],
+        "example": "Keyboard → CPU → Monitor",
+        "practice": {
+          "question": "Which is an input device?",
+          "options": [
+            "Keyboard",
+            "Monitor",
+            "Speaker",
+            "Printer"
+          ],
+          "answer": "Keyboard"
+        }
+      },
+      {
+        "name": "Pipeline",
+        "difficulty": "Hard",
+        "description": "Instruction pipelining improves CPU performance by overlapping instruction execution stages.",
+        "complexity": "Improves throughput",
+        "keyPoints": [
+          "Instruction stages overlap",
+          "Improves throughput",
+          "Can introduce hazards",
+          "Used in modern processors"
+        ],
+        "example": "Fetch → Decode → Execute → Memory → Write Back",
+        "practice": {
+          "question": "What is the main benefit of pipelining?",
+          "options": [
+            "Higher throughput",
+            "More storage",
+            "Less RAM",
+            "No instructions"
+          ],
+          "answer": "Higher throughput"
+        }
+      },
+      {
+        "name": "RISC and CISC",
+        "difficulty": "Medium",
+        "description": "RISC and CISC are two approaches to processor instruction set design.",
+        "complexity": "Conceptual",
+        "keyPoints": [
+          "RISC uses simpler instructions",
+          "CISC uses more complex instructions",
+          "RISC often uses fixed instruction formats",
+          "CISC can reduce number of instructions per program"
+        ],
+        "example": "RISC vs CISC",
+        "practice": {
+          "question": "What does RISC stand for?",
+          "options": [
+            "Reduced Instruction Set Computer",
+            "Random Instruction System Computer",
+            "Rapid Integrated System Computer",
+            "Reduced Internal Storage Computer"
+          ],
+          "answer": "Reduced Instruction Set Computer"
+        }
+      },
+      {
+        "name": "Control Unit",
+        "difficulty": "Medium",
+        "description": "The control unit directs and coordinates operations performed by the CPU.",
+        "complexity": "Conceptual",
+        "keyPoints": [
+          "Generates control signals",
+          "Coordinates CPU operations",
+          "Controls instruction execution",
+          "Works with ALU and registers"
+        ],
+        "example": "Control Unit → Control Signals",
+        "practice": {
+          "question": "What does the control unit generate?",
+          "options": [
+            "Control Signals",
+            "Images",
+            "Files",
+            "Web Pages"
+          ],
+          "answer": "Control Signals"
+        }
+      }
+    ],
+    "materials": [
+      "Number System Notes",
+      "Boolean Algebra Notes",
+      "CPU Organization Notes",
+      "Memory Organization",
+      "Cache Memory Notes",
+      "Pipeline Notes",
+      "RISC vs CISC",
+      "Control Unit Notes"
+    ]
+  },
+
+  "DBMS": {
+    "description": "Database Management Systems are used to store, organize and retrieve data efficiently.",
+    "topics": [
+      {
+        "name": "Introduction to DBMS",
+        "difficulty": "Easy",
+        "description": "DBMS is software used to create, store, organize and manage databases.",
+        "complexity": "Conceptual",
+        "keyPoints": [
+          "Stores data",
+          "Manages databases",
+          "Provides security",
+          "Reduces data redundancy"
+        ],
+        "example": "MySQL, PostgreSQL, Oracle",
+        "practice": {
+          "question": "What is the main purpose of a DBMS?",
+          "options": [
+            "Manage Data",
+            "Create Images",
+            "Edit Videos",
+            "Browse Websites"
+          ],
+          "answer": "Manage Data"
+        }
+      },
+      {
+        "name": "ER Model",
+        "difficulty": "Medium",
+        "description": "The Entity Relationship model represents entities, attributes and relationships in a database.",
+        "complexity": "Conceptual",
+        "keyPoints": [
+          "Entities",
+          "Attributes",
+          "Relationships",
+          "ER diagrams"
+        ],
+        "example": "Student — Enrolls — Course",
+        "practice": {
+          "question": "What does ER stand for?",
+          "options": [
+            "Entity Relationship",
+            "External Record",
+            "Entity Record",
+            "Electronic Relation"
+          ],
+          "answer": "Entity Relationship"
+        }
+      },
+      {
+        "name": "Relational Model",
+        "difficulty": "Medium",
+        "description": "The relational model organizes data into tables containing rows and columns.",
+        "complexity": "Conceptual",
+        "keyPoints": [
+          "Tables",
+          "Rows",
+          "Columns",
+          "Relationships"
+        ],
+        "example": "Student(id, name, course)",
+        "practice": {
+          "question": "What structure is mainly used by the relational model?",
+          "options": [
+            "Tables",
+            "Graphs",
+            "Stacks",
+            "Trees"
+          ],
+          "answer": "Tables"
+        }
+      },
+      {
+        "name": "Keys",
+        "difficulty": "Easy",
+        "description": "Database keys identify records and establish relationships between tables.",
+        "complexity": "Conceptual",
+        "keyPoints": [
+          "Primary Key",
+          "Foreign Key",
+          "Candidate Key",
+          "Composite Key"
+        ],
+        "example": "StudentID as Primary Key",
+        "practice": {
+          "question": "Which key uniquely identifies a record?",
+          "options": [
+            "Primary Key",
+            "Foreign Key",
+            "Random Key",
+            "Duplicate Key"
+          ],
+          "answer": "Primary Key"
+        }
+      },
+      {
+        "name": "SQL",
+        "difficulty": "Medium",
+        "description": "SQL is used to create, retrieve, modify and manage data in relational databases.",
+        "complexity": "Depends on query",
+        "keyPoints": [
+          "SELECT",
+          "INSERT",
+          "UPDATE",
+          "DELETE"
+        ],
+        "example": "SELECT * FROM students;",
+        "practice": {
+          "question": "Which SQL command retrieves data?",
+          "options": [
+            "SELECT",
+            "DELETE",
+            "UPDATE",
+            "DROP"
+          ],
+          "answer": "SELECT"
+        }
+      },
+      {
+        "name": "Normalization",
+        "difficulty": "Medium",
+        "description": "Normalization organizes database tables to reduce redundancy and improve data integrity.",
+        "complexity": "Conceptual",
+        "keyPoints": [
+          "1NF",
+          "2NF",
+          "3NF",
+          "Reduces redundancy"
+        ],
+        "example": "Splitting repeated data into separate tables",
+        "practice": {
+          "question": "What is a major goal of normalization?",
+          "options": [
+            "Reduce Redundancy",
+            "Increase Duplication",
+            "Delete Database",
+            "Increase Repetition"
+          ],
+          "answer": "Reduce Redundancy"
+        }
+      },
+      {
+        "name": "Functional Dependency",
+        "difficulty": "Hard",
+        "description": "Functional dependency describes relationships between attributes in a relational database.",
+        "complexity": "Conceptual",
+        "keyPoints": [
+          "Determines relationships between attributes",
+          "Used in normalization",
+          "Written using arrow notation",
+          "Helps identify keys"
+        ],
+        "example": "StudentID → StudentName",
+        "practice": {
+          "question": "Functional dependencies are mainly used in which DBMS concept?",
+          "options": [
+            "Normalization",
+            "Networking",
+            "Operating Systems",
+            "Graphics"
+          ],
+          "answer": "Normalization"
+        }
+      },
+      {
+        "name": "Transactions",
+        "difficulty": "Medium",
+        "description": "A transaction is a sequence of database operations treated as one logical unit.",
+        "complexity": "Depends on operations",
+        "keyPoints": [
+          "Atomicity",
+          "Consistency",
+          "Isolation",
+          "Durability"
+        ],
+        "example": "Bank transfer transaction",
+        "practice": {
+          "question": "Which property ensures that a transaction is all-or-nothing?",
+          "options": [
+            "Atomicity",
+            "Consistency",
+            "Isolation",
+            "Durability"
+          ],
+          "answer": "Atomicity"
+        }
+      },
+      {
+        "name": "Concurrency Control",
+        "difficulty": "Hard",
+        "description": "Concurrency control manages simultaneous database transactions while maintaining consistency.",
+        "complexity": "Depends on protocol",
+        "keyPoints": [
+          "Locks",
+          "Serializability",
+          "Deadlocks",
+          "Concurrent transactions"
+        ],
+        "example": "Two users updating the same record",
+        "practice": {
+          "question": "What does concurrency control maintain?",
+          "options": [
+            "Database Consistency",
+            "Images",
+            "Network Speed",
+            "CPU Frequency"
+          ],
+          "answer": "Database Consistency"
+        }
+      },
+      {
+        "name": "Indexing",
+        "difficulty": "Medium",
+        "description": "Indexes improve the speed of data retrieval from database tables.",
+        "complexity": "Search can approach O(log n)",
+        "keyPoints": [
+          "Speeds up searches",
+          "Uses additional storage",
+          "Can be created on columns",
+          "Useful for large tables"
+        ],
+        "example": "CREATE INDEX idx_name ON students(name);",
+        "practice": {
+          "question": "What is the main purpose of an index?",
+          "options": [
+            "Faster Data Retrieval",
+            "Delete Data",
+            "Create Users",
+            "Format Tables"
+          ],
+          "answer": "Faster Data Retrieval"
+        }
+      },
+      {
+        "name": "Database Security",
+        "difficulty": "Medium",
+        "description": "Database security protects data from unauthorized access and modification.",
+        "complexity": "Conceptual",
+        "keyPoints": [
+          "Authentication",
+          "Authorization",
+          "Encryption",
+          "Access control"
+        ],
+        "example": "Username + Password authentication",
+        "practice": {
+          "question": "Which technique helps protect sensitive database data?",
+          "options": [
+            "Encryption",
+            "Duplication",
+            "Deletion",
+            "Sorting"
+          ],
+          "answer": "Encryption"
+        }
+      },
+      {
+        "name": "Joins",
+        "difficulty": "Medium",
+        "description": "Joins combine data from multiple tables using related columns.",
+        "complexity": "Depends on query and indexes",
+        "keyPoints": [
+          "INNER JOIN",
+          "LEFT JOIN",
+          "RIGHT JOIN",
+          "FULL JOIN"
+        ],
+        "example": "SELECT * FROM students INNER JOIN courses ON students.course_id = courses.id;",
+        "practice": {
+          "question": "Which JOIN returns matching rows from both tables?",
+          "options": [
+            "INNER JOIN",
+            "LEFT JOIN",
+            "RIGHT JOIN",
+            "FULL JOIN"
+          ],
+          "answer": "INNER JOIN"
+        }
+      }
+    ],
+    "materials": [
+      "DBMS Fundamentals",
+      "ER Diagram Notes",
+      "SQL Practice Questions",
+      "Normalization Notes",
+      "Transaction Management",
+      "Concurrency Control",
+      "Indexing Notes",
+      "SQL Queries Practice"
+    ]
+  },
+
+  "CN": {
+    "description": "Computer Networks explains how computers communicate and exchange information.",
+    "topics": [
+      {
+        "name": "Introduction to Networks",
+        "difficulty": "Easy",
+        "description": "Computer networks allow devices to communicate and share resources.",
+        "complexity": "Conceptual",
+        "keyPoints": [
+          "Communication between devices",
+          "Resource sharing",
+          "Data transfer",
+          "Network devices"
+        ],
+        "example": "Computer A → Router → Computer B",
+        "practice": {
+          "question": "What is the main purpose of a computer network?",
+          "options": [
+            "Communication",
+            "Only Gaming",
+            "Only Printing",
+            "Only Storage"
+          ],
+          "answer": "Communication"
+        }
+      },
+      {
+        "name": "OSI Model",
+        "difficulty": "Easy",
+        "description": "The OSI model divides network communication into seven layers.",
+        "complexity": "7 Layers",
+        "keyPoints": [
+          "Physical",
+          "Data Link",
+          "Network",
+          "Transport",
+          "Session",
+          "Presentation",
+          "Application"
+        ],
+        "example": "Application → Presentation → Session → Transport → Network → Data Link → Physical",
+        "practice": {
+          "question": "How many layers are in the OSI model?",
+          "options": [
+            "5",
+            "6",
+            "7",
+            "8"
+          ],
+          "answer": "7"
+        }
+      },
+      {
+        "name": "TCP/IP Model",
+        "difficulty": "Easy",
+        "description": "The TCP/IP model is a practical networking model used on the Internet.",
+        "complexity": "4 Layers",
+        "keyPoints": [
+          "Application Layer",
+          "Transport Layer",
+          "Internet Layer",
+          "Network Access Layer"
+        ],
+        "example": "Application → Transport → Internet → Network Access",
+        "practice": {
+          "question": "How many layers are commonly used in the TCP/IP model?",
+          "options": [
+            "3",
+            "4",
+            "7",
+            "8"
+          ],
+          "answer": "4"
+        }
+      },
+      {
+        "name": "Physical Layer",
+        "difficulty": "Easy",
+        "description": "The physical layer handles transmission of raw bits over a communication medium.",
+        "complexity": "Conceptual",
+        "keyPoints": [
+          "Raw bits",
+          "Cables",
+          "Signals",
+          "Connectors"
+        ],
+        "example": "Bits → Electrical/Optical Signals",
+        "practice": {
+          "question": "Which OSI layer transmits raw bits?",
+          "options": [
+            "Physical",
+            "Network",
+            "Transport",
+            "Application"
+          ],
+          "answer": "Physical"
+        }
+      },
+      {
+        "name": "Data Link Layer",
+        "difficulty": "Medium",
+        "description": "The data link layer provides node-to-node data transfer and error detection.",
+        "complexity": "Depends on protocol",
+        "keyPoints": [
+          "Frames",
+          "MAC addresses",
+          "Error detection",
+          "Flow control"
+        ],
+        "example": "Ethernet Frame",
+        "practice": {
+          "question": "Which address is mainly associated with the Data Link layer?",
+          "options": [
+            "MAC Address",
+            "IP Address",
+            "Port Number",
+            "URL"
+          ],
+          "answer": "MAC Address"
+        }
+      },
+      {
+        "name": "Network Layer",
+        "difficulty": "Medium",
+        "description": "The network layer handles logical addressing and routing of packets.",
+        "complexity": "Depends on routing algorithm",
+        "keyPoints": [
+          "IP addressing",
+          "Routing",
+          "Packets",
+          "Routers"
+        ],
+        "example": "IP Address → Router → Destination",
+        "practice": {
+          "question": "Which device mainly operates at the Network layer?",
+          "options": [
+            "Router",
+            "Keyboard",
+            "Monitor",
+            "Printer"
+          ],
+          "answer": "Router"
+        }
+      },
+      {
+        "name": "Transport Layer",
+        "difficulty": "Medium",
+        "description": "The transport layer provides end-to-end communication between applications.",
+        "complexity": "Depends on protocol",
+        "keyPoints": [
+          "TCP",
+          "UDP",
+          "Ports",
+          "Reliable communication"
+        ],
+        "example": "TCP / UDP",
+        "practice": {
+          "question": "Which protocol provides reliable connection-oriented communication?",
+          "options": [
+            "TCP",
+            "UDP",
+            "IP",
+            "DNS"
+          ],
+          "answer": "TCP"
+        }
+      },
+      {
+        "name": "Application Layer",
+        "difficulty": "Easy",
+        "description": "The application layer provides network services directly to applications.",
+        "complexity": "Conceptual",
+        "keyPoints": [
+          "HTTP",
+          "FTP",
+          "DNS",
+          "SMTP"
+        ],
+        "example": "Browser → HTTP → Web Server",
+        "practice": {
+          "question": "Which protocol is commonly used for web communication?",
+          "options": [
+            "HTTP",
+            "FTP",
+            "ARP",
+            "ICMP"
+          ],
+          "answer": "HTTP"
+        }
+      },
+      {
+        "name": "IP Addressing",
+        "difficulty": "Medium",
+        "description": "IP addressing identifies devices on a network using logical addresses.",
+        "complexity": "Conceptual",
+        "keyPoints": [
+          "IPv4",
+          "IPv6",
+          "Network address",
+          "Host address"
+        ],
+        "example": "192.168.1.10",
+        "practice": {
+          "question": "Which is a valid IPv4 address?",
+          "options": [
+            "192.168.1.10",
+            "999.999.999.999",
+            "ABC.DEF",
+            "1234"
+          ],
+          "answer": "192.168.1.10"
+        }
+      },
+      {
+        "name": "Routing",
+        "difficulty": "Hard",
+        "description": "Routing determines the best path for packets to travel from source to destination.",
+        "complexity": "Depends on routing algorithm",
+        "keyPoints": [
+          "Routing tables",
+          "Shortest path",
+          "Routers",
+          "Routing protocols"
+        ],
+        "example": "Source → Router A → Router B → Destination",
+        "practice": {
+          "question": "What does routing determine?",
+          "options": [
+            "Best Path",
+            "File Size",
+            "CPU Speed",
+            "Screen Resolution"
+          ],
+          "answer": "Best Path"
+        }
+      },
+      {
+        "name": "TCP and UDP",
+        "difficulty": "Medium",
+        "description": "TCP provides reliable connection-oriented communication while UDP provides faster connectionless communication.",
+        "complexity": "Protocol dependent",
+        "keyPoints": [
+          "TCP is reliable",
+          "UDP is connectionless",
+          "TCP uses acknowledgements",
+          "UDP is commonly used for real-time applications"
+        ],
+        "example": "TCP → Reliable | UDP → Fast",
+        "practice": {
+          "question": "Which protocol is connectionless?",
+          "options": [
+            "TCP",
+            "UDP",
+            "HTTP",
+            "FTP"
+          ],
+          "answer": "UDP"
+        }
+      },
+      {
+        "name": "DNS",
+        "difficulty": "Easy",
+        "description": "DNS translates human-readable domain names into IP addresses.",
+        "complexity": "Lookup depends on caching",
+        "keyPoints": [
+          "Domain names",
+          "IP addresses",
+          "DNS servers",
+          "Name resolution"
+        ],
+        "example": "google.com → IP Address",
+        "practice": {
+          "question": "What does DNS translate?",
+          "options": [
+            "Domain Name to IP Address",
+            "IP to MAC only",
+            "HTML to CSS",
+            "Text to Image"
+          ],
+          "answer": "Domain Name to IP Address"
+        }
+      },
+      {
+        "name": "HTTP and HTTPS",
+        "difficulty": "Easy",
+        "description": "HTTP and HTTPS are application layer protocols used for web communication.",
+        "complexity": "Request-response model",
+        "keyPoints": [
+          "HTTP",
+          "HTTPS",
+          "Requests",
+          "Responses",
+          "HTTPS uses encryption"
+        ],
+        "example": "Browser → HTTPS → Server",
+        "practice": {
+          "question": "What does HTTPS provide over HTTP?",
+          "options": [
+            "Encrypted Communication",
+            "More RAM",
+            "Faster CPU",
+            "More Storage"
+          ],
+          "answer": "Encrypted Communication"
+        }
+      }
+    ],
+    "materials": [
+      "OSI Model Notes",
+      "TCP/IP Model Notes",
+      "IP Addressing",
+      "Routing Algorithms",
+      "TCP vs UDP",
+      "DNS Notes",
+      "HTTP and HTTPS",
+      "Network Security"
+    ]
+  },
+
+  "OS": {
+    "description": "Operating Systems manage computer hardware, software resources and provide services to applications.",
+    "topics": [
+      {
+        "name": "Introduction to Operating System",
+        "difficulty": "Easy",
+        "description": "An operating system manages hardware resources and provides services to application programs.",
+        "complexity": "Conceptual",
+        "keyPoints": [
+          "Process management",
+          "Memory management",
+          "File management",
+          "Device management"
+        ],
+        "example": "Windows, Linux, macOS",
+        "practice": {
+          "question": "What is the main role of an operating system?",
+          "options": [
+            "Manage Hardware and Software",
+            "Only Browse Internet",
+            "Only Create Documents",
+            "Only Play Games"
+          ],
+          "answer": "Manage Hardware and Software"
+        }
+      },
+      {
+        "name": "Process Management",
+        "difficulty": "Medium",
+        "description": "Process management handles creation, execution and termination of processes.",
+        "complexity": "Depends on scheduling",
+        "keyPoints": [
+          "Process creation",
+          "Process termination",
+          "Process states",
+          "Context switching"
+        ],
+        "example": "New → Ready → Running → Waiting → Terminated",
+        "practice": {
+          "question": "What is a running program called?",
+          "options": [
+            "Process",
+            "File",
+            "Thread only",
+            "Folder"
+          ],
+          "answer": "Process"
+        }
+      },
+      {
+        "name": "Process Scheduling",
+        "difficulty": "Medium",
+        "description": "Process scheduling determines which process should be executed by the CPU.",
+        "complexity": "Depends on algorithm",
+        "keyPoints": [
+          "FCFS",
+          "SJF",
+          "Round Robin",
+          "Priority Scheduling"
+        ],
+        "example": "Ready Queue → CPU",
+        "practice": {
+          "question": "Which scheduling algorithm uses a time quantum?",
+          "options": [
+            "Round Robin",
+            "FCFS",
+            "SJF",
+            "FIFO only"
+          ],
+          "answer": "Round Robin"
+        }
+      },
+      {
+        "name": "Threads",
+        "difficulty": "Medium",
+        "description": "Threads are lightweight units of execution within a process.",
+        "complexity": "Depends on workload",
+        "keyPoints": [
+          "Lightweight",
+          "Share process resources",
+          "Improve concurrency",
+          "Can run independently"
+        ],
+        "example": "Process → Thread 1 + Thread 2",
+        "practice": {
+          "question": "Threads belong to which entity?",
+          "options": [
+            "Process",
+            "Database",
+            "Router",
+            "File"
+          ],
+          "answer": "Process"
+        }
+      },
+      {
+        "name": "Synchronization",
+        "difficulty": "Hard",
+        "description": "Process synchronization coordinates concurrent processes to avoid race conditions.",
+        "complexity": "Depends on mechanism",
+        "keyPoints": [
+          "Critical section",
+          "Mutex",
+          "Semaphore",
+          "Race condition"
+        ],
+        "example": "Process A → Critical Section ← Process B",
+        "practice": {
+          "question": "Which problem does synchronization help prevent?",
+          "options": [
+            "Race Condition",
+            "Low Storage",
+            "Slow Monitor",
+            "Network Failure"
+          ],
+          "answer": "Race Condition"
+        }
+      },
+      {
+        "name": "Deadlock",
+        "difficulty": "Hard",
+        "description": "Deadlock occurs when processes wait indefinitely for resources held by each other.",
+        "complexity": "Depends on detection or avoidance algorithm",
+        "keyPoints": [
+          "Mutual exclusion",
+          "Hold and wait",
+          "No preemption",
+          "Circular wait"
+        ],
+        "example": "P1 waits for P2 and P2 waits for P1",
+        "practice": {
+          "question": "Which is a necessary condition for deadlock?",
+          "options": [
+            "Circular Wait",
+            "Sorting",
+            "Paging",
+            "Compilation"
+          ],
+          "answer": "Circular Wait"
+        }
+      },
+      {
+        "name": "Memory Management",
+        "difficulty": "Medium",
+        "description": "Memory management controls allocation and deallocation of memory to processes.",
+        "complexity": "Depends on technique",
+        "keyPoints": [
+          "Memory allocation",
+          "Memory deallocation",
+          "Paging",
+          "Segmentation"
+        ],
+        "example": "Process → Main Memory",
+        "practice": {
+          "question": "Which OS component manages RAM allocation?",
+          "options": [
+            "Memory Management",
+            "File System",
+            "Compiler",
+            "Browser"
+          ],
+          "answer": "Memory Management"
+        }
+      },
+      {
+        "name": "Paging",
+        "difficulty": "Medium",
+        "description": "Paging divides memory into fixed-size pages and frames.",
+        "complexity": "Depends on page table",
+        "keyPoints": [
+          "Pages",
+          "Frames",
+          "Page table",
+          "Address translation"
+        ],
+        "example": "Page 1 → Frame 4",
+        "practice": {
+          "question": "Paging divides logical memory into what?",
+          "options": [
+            "Pages",
+            "Files",
+            "Threads",
+            "Processes"
+          ],
+          "answer": "Pages"
+        }
+      },
+      {
+        "name": "Segmentation",
+        "difficulty": "Medium",
+        "description": "Segmentation divides memory into logical segments such as code, data and stack.",
+        "complexity": "Address translation dependent",
+        "keyPoints": [
+          "Code segment",
+          "Data segment",
+          "Stack segment",
+          "Variable-sized segments"
+        ],
+        "example": "Code | Data | Stack",
+        "practice": {
+          "question": "Segmentation divides memory into what?",
+          "options": [
+            "Logical Segments",
+            "Fixed Pages",
+            "Only Frames",
+            "Files"
+          ],
+          "answer": "Logical Segments"
+        }
+      },
+      {
+        "name": "Virtual Memory",
+        "difficulty": "Hard",
+        "description": "Virtual memory allows programs to use more memory than the physically available RAM.",
+        "complexity": "Depends on page replacement",
+        "keyPoints": [
+          "Uses secondary storage",
+          "Demand paging",
+          "Page faults",
+          "Allows larger programs"
+        ],
+        "example": "RAM + Disk → Virtual Memory",
+        "practice": {
+          "question": "Virtual memory mainly uses which storage along with RAM?",
+          "options": [
+            "Disk",
+            "Keyboard",
+            "Monitor",
+            "CPU Register"
+          ],
+          "answer": "Disk"
+        }
+      },
+      {
+        "name": "File System",
+        "difficulty": "Medium",
+        "description": "A file system organizes and manages files and directories on storage devices.",
+        "complexity": "Depends on file system",
+        "keyPoints": [
+          "Files",
+          "Directories",
+          "File permissions",
+          "Storage management"
+        ],
+        "example": "Folder → File → Data",
+        "practice": {
+          "question": "What does a file system manage?",
+          "options": [
+            "Files and Directories",
+            "Only CPU",
+            "Only RAM",
+            "Only Network"
+          ],
+          "answer": "Files and Directories"
+        }
+      },
+      {
+        "name": "Disk Scheduling",
+        "difficulty": "Hard",
+        "description": "Disk scheduling algorithms determine the order in which disk I/O requests are served.",
+        "complexity": "Depends on algorithm",
+        "keyPoints": [
+          "FCFS",
+          "SSTF",
+          "SCAN",
+          "C-SCAN"
+        ],
+        "example": "Request Queue → Disk Head",
+        "practice": {
+          "question": "Which algorithm is also known as the elevator algorithm?",
+          "options": [
+            "SCAN",
+            "FCFS",
+            "SJF",
+            "FIFO"
+          ],
+          "answer": "SCAN"
+        }
+      }
+    ],
+    "materials": [
+      "OS Fundamentals",
+      "Process Management Notes",
+      "CPU Scheduling Algorithms",
+      "Process Synchronization",
+      "Deadlock Notes",
+      "Memory Management",
+      "Paging and Segmentation",
+      "Virtual Memory",
+      "File System Notes",
+      "Disk Scheduling"
+    ]
+  },
+
+  "PYTHON": {
+    "description": "Python is a powerful programming language widely used in software development, data science and artificial intelligence.",
+    "topics": [
+      {
+        "name": "Python Basics",
+        "difficulty": "Easy",
+        "description": "Python basics cover syntax, indentation, variables and fundamental programming concepts.",
+        "complexity": "Conceptual",
+        "keyPoints": [
+          "Simple syntax",
+          "Indentation",
+          "Dynamic typing",
+          "Interpreted language"
+        ],
+        "example": "print('Hello World')",
+        "practice": {
+          "question": "Which function is used to display output in Python?",
+          "options": [
+            "print()",
+            "display()",
+            "show()",
+            "output()"
+          ],
+          "answer": "print()"
+        }
+      },
+      {
+        "name": "Variables and Data Types",
+        "difficulty": "Easy",
+        "description": "Variables store data and Python provides types such as integers, floats, strings and booleans.",
+        "complexity": "Basic operations: O(1)",
+        "keyPoints": [
+          "int",
+          "float",
+          "str",
+          "bool"
+        ],
+        "example": "age = 20",
+        "practice": {
+          "question": "Which data type stores True or False?",
+          "options": [
+            "bool",
+            "int",
+            "str",
+            "float"
+          ],
+          "answer": "bool"
+        }
+      },
+      {
+        "name": "Operators",
+        "difficulty": "Easy",
+        "description": "Operators perform arithmetic, comparison, logical and other operations.",
+        "complexity": "Usually O(1)",
+        "keyPoints": [
+          "Arithmetic",
+          "Comparison",
+          "Logical",
+          "Assignment"
+        ],
+        "example": "a + b",
+        "practice": {
+          "question": "Which operator is used for exponentiation in Python?",
+          "options": [
+            "**",
+            "//",
+            "%%",
+            "^^"
+          ],
+          "answer": "**"
+        }
+      },
+      {
+        "name": "Conditional Statements",
+        "difficulty": "Easy",
+        "description": "Conditional statements execute different blocks depending on whether a condition is true or false.",
+        "complexity": "O(1) excluding nested operations",
+        "keyPoints": [
+          "if",
+          "elif",
+          "else",
+          "Conditions"
+        ],
+        "example": "if age >= 18: print('Adult')",
+        "practice": {
+          "question": "Which keyword is used for a condition in Python?",
+          "options": [
+            "if",
+            "when",
+            "condition",
+            "check"
+          ],
+          "answer": "if"
+        }
+      },
+      {
+        "name": "Loops",
+        "difficulty": "Easy",
+        "description": "Loops repeatedly execute a block of code.",
+        "complexity": "Depends on number of iterations",
+        "keyPoints": [
+          "for loop",
+          "while loop",
+          "break",
+          "continue"
+        ],
+        "example": "for i in range(5): print(i)",
+        "practice": {
+          "question": "Which loop is commonly used to iterate over a sequence?",
+          "options": [
+            "for",
+            "switch",
+            "repeat",
+            "select"
+          ],
+          "answer": "for"
+        }
+      },
+      {
+        "name": "Functions",
+        "difficulty": "Easy",
+        "description": "Functions are reusable blocks of code designed to perform specific tasks.",
+        "complexity": "Depends on function body",
+        "keyPoints": [
+          "def keyword",
+          "Parameters",
+          "Return value",
+          "Code reuse"
+        ],
+        "example": "def add(a, b): return a + b",
+        "practice": {
+          "question": "Which keyword defines a function in Python?",
+          "options": [
+            "def",
+            "function",
+            "func",
+            "define"
+          ],
+          "answer": "def"
+        }
+      },
+      {
+        "name": "Lists",
+        "difficulty": "Easy",
+        "description": "Lists are ordered and mutable collections that can store multiple values.",
+        "complexity": "Index Access: O(1), Search: O(n)",
+        "keyPoints": [
+          "Ordered",
+          "Mutable",
+          "Allows duplicates",
+          "Supports indexing"
+        ],
+        "example": "numbers = [10, 20, 30]",
+        "practice": {
+          "question": "Which property does a Python list have?",
+          "options": [
+            "Mutable",
+            "Immutable",
+            "Only Strings",
+            "No Indexing"
+          ],
+          "answer": "Mutable"
+        }
+      },
+      {
+        "name": "Tuples",
+        "difficulty": "Easy",
+        "description": "Tuples are ordered and immutable collections in Python.",
+        "complexity": "Index Access: O(1)",
+        "keyPoints": [
+          "Ordered",
+          "Immutable",
+          "Allows duplicates",
+          "Supports indexing"
+        ],
+        "example": "data = (10, 20, 30)",
+        "practice": {
+          "question": "Are Python tuples mutable?",
+          "options": [
+            "No",
+            "Yes",
+            "Sometimes",
+            "Only with loops"
+          ],
+          "answer": "No"
+        }
+      },
+      {
+        "name": "Sets",
+        "difficulty": "Medium",
+        "description": "Sets are unordered collections of unique elements.",
+        "complexity": "Average Search: O(1)",
+        "keyPoints": [
+          "Unique elements",
+          "Unordered",
+          "Fast membership testing",
+          "Supports set operations"
+        ],
+        "example": "numbers = {1, 2, 3}",
+        "practice": {
+          "question": "What does a Python set automatically avoid?",
+          "options": [
+            "Duplicate Elements",
+            "Numbers",
+            "Strings",
+            "Variables"
+          ],
+          "answer": "Duplicate Elements"
+        }
+      },
+      {
+        "name": "Dictionaries",
+        "difficulty": "Medium",
+        "description": "Dictionaries store data as key-value pairs.",
+        "complexity": "Average Lookup: O(1)",
+        "keyPoints": [
+          "Key-value pairs",
+          "Fast lookup",
+          "Keys are unique",
+          "Mutable"
+        ],
+        "example": "student = {'name': 'Raj', 'age': 20}",
+        "practice": {
+          "question": "What does a Python dictionary store?",
+          "options": [
+            "Key-Value Pairs",
+            "Only Values",
+            "Only Keys",
+            "Only Numbers"
+          ],
+          "answer": "Key-Value Pairs"
+        }
+      },
+      {
+        "name": "Strings",
+        "difficulty": "Easy",
+        "description": "Python strings are immutable sequences of Unicode characters.",
+        "complexity": "Search: O(n)",
+        "keyPoints": [
+          "Immutable",
+          "Sequence of characters",
+          "Supports indexing",
+          "Supports slicing"
+        ],
+        "example": "name = 'Python'",
+        "practice": {
+          "question": "Are Python strings mutable?",
+          "options": [
+            "No",
+            "Yes",
+            "Only sometimes",
+            "Only numbers are mutable"
+          ],
+          "answer": "No"
+        }
+      },
+      {
+        "name": "Object Oriented Programming",
+        "difficulty": "Medium",
+        "description": "Object Oriented Programming organizes programs using classes and objects.",
+        "complexity": "Depends on implementation",
+        "keyPoints": [
+          "Classes",
+          "Objects",
+          "Inheritance",
+          "Polymorphism"
+        ],
+        "example": "class Student: pass",
+        "practice": {
+          "question": "Which concept allows one class to acquire properties of another?",
+          "options": [
+            "Inheritance",
+            "Looping",
+            "Indexing",
+            "Sorting"
+          ],
+          "answer": "Inheritance"
+        }
+      },
+      {
+        "name": "Exception Handling",
+        "difficulty": "Medium",
+        "description": "Exception handling allows programs to handle runtime errors safely.",
+        "complexity": "Depends on operation",
+        "keyPoints": [
+          "try",
+          "except",
+          "finally",
+          "raise"
+        ],
+        "example": "try: x = 10 / 0 except: print('Error')",
+        "practice": {
+          "question": "Which keyword handles an exception?",
+          "options": [
+            "except",
+            "catch",
+            "error",
+            "handle"
+          ],
+          "answer": "except"
+        }
+      },
+      {
+        "name": "File Handling",
+        "difficulty": "Medium",
+        "description": "File handling allows Python programs to read and write data to files.",
+        "complexity": "Depends on file size",
+        "keyPoints": [
+          "open()",
+          "read()",
+          "write()",
+          "close()"
+        ],
+        "example": "open('data.txt', 'r')",
+        "practice": {
+          "question": "Which function is used to open a file in Python?",
+          "options": [
+            "open()",
+            "file()",
+            "readFile()",
+            "openFile()"
+          ],
+          "answer": "open()"
+        }
+      },
+      {
+        "name": "Modules and Packages",
+        "difficulty": "Medium",
+        "description": "Modules and packages help organize Python code and reuse functionality.",
+        "complexity": "Depends on imported functionality",
+        "keyPoints": [
+          "import",
+          "Modules",
+          "Packages",
+          "Code reuse"
+        ],
+        "example": "import math",
+        "practice": {
+          "question": "Which keyword is used to include a module?",
+          "options": [
+            "import",
+            "include",
+            "use",
+            "module"
+          ],
+          "answer": "import"
+        }
+      }
+    ],
+    "materials": [
+      "Python Basics Notes",
+      "Data Types and Operators",
+      "Loops Practice",
+      "Functions Practice",
+      "List and Tuple Notes",
+      "Dictionary and Set Notes",
+      "String Problems",
+      "OOP in Python",
+      "Exception Handling",
+      "File Handling"
+    ]
+  }
+}
