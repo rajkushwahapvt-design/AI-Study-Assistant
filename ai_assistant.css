@@ -1677,3 +1677,46 @@ body.light-mode .tutor-answer {
     overflow-wrap: anywhere;
 
 }
+.ai-response {
+    line-height: 1.8;
+    font-size: 15px;
+    overflow-wrap: anywhere;
+}
+
+.ai-response h1,
+.ai-response h2,
+.ai-response h3 {
+    margin: 20px 0 10px;
+    color: #38bdf8;
+}
+
+.ai-response p {
+    margin: 10px 0;
+}
+
+.ai-response ul,
+.ai-response ol {
+    padding-left: 25px;
+    margin: 12px 0;
+}
+
+.ai-response li {
+    margin-bottom: 8px;
+}
+
+.ai-response strong {
+    color: #38bdf8;
+}
+
+.ai-response code {
+    background: #1e293b;
+    padding: 3px 6px;
+    border-radius: 5px;
+}
+
+.ai-response pre {
+    background: #0f172a;
+    padding: 15px;
+    border-radius: 8px;
+    overflow-x: auto;
+}
