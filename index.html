@@ -4,16 +4,14 @@
 <head>
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>AI Study Assistant</title>
 
-    <link rel="stylesheet"
-        href="ai_assistant.css">
+    <link rel="stylesheet" href="ai_assistant.css">
 
-    <script src="ai_assistant.js"
-        defer></script>
+
+    <script src="ai_assistant.js" defer></script>
 </head>
 
 
@@ -45,6 +43,21 @@
 
                 <a href="#progress">
                     Progress
+                </a>
+                <a href="#ai-notes">
+                    AI Notes
+                </a>
+                <a href="#ai-quiz">
+                    AI Quiz
+                </a>
+                <a href="#ai-flashcards">
+                    AI Flashcards
+                </a>
+                <a href="#ai-planner">
+                    Study Planner
+                </a>
+                <a href="#ai-summarizer">
+                    AI Summarizer
                 </a>
 
             </div>
@@ -80,13 +93,11 @@
 
             <div class="hero-buttons">
 
-                <a href="#subjects"
-                    class="primary-btn">
+                <a href="#subjects" class="primary-btn">
                     Start Studying →
                 </a>
 
-                <a href="#quiz"
-                    class="secondary-btn">
+                <a href="#quiz" class="secondary-btn">
                     Take Quiz
                 </a>
 
@@ -99,8 +110,7 @@
 
     <!-- ================= DASHBOARD ================= -->
 
-    <section class="dashboard"
-        id="dashboard">
+    <section class="dashboard" id="dashboard">
 
         <div class="section-heading">
 
@@ -231,8 +241,7 @@
                     with the fundamentals of DSA.
                 </p>
 
-                <a href="#subjects"
-                    class="primary-btn">
+                <a href="#subjects" class="primary-btn">
                     Start Learning →
                 </a>
 
@@ -245,8 +254,7 @@
 
     <!-- ================= SUBJECTS ================= -->
 
-    <section class="subjects"
-        id="subjects">
+    <section class="subjects" id="subjects">
 
         <div class="section-heading">
 
@@ -268,8 +276,7 @@
         <div class="subject-container">
 
 
-            <button class="subject-card"
-                data-subject="DSA">
+            <button class="subject-card" data-subject="DSA">
 
                 <div class="subject-icon">
                     🧠
@@ -290,8 +297,7 @@
             </button>
 
 
-            <button class="subject-card"
-                data-subject="COA">
+            <button class="subject-card" data-subject="COA">
 
                 <div class="subject-icon">
                     💻
@@ -312,8 +318,7 @@
             </button>
 
 
-            <button class="subject-card"
-                data-subject="DBMS">
+            <button class="subject-card" data-subject="DBMS">
 
                 <div class="subject-icon">
                     🗄️
@@ -334,8 +339,7 @@
             </button>
 
 
-            <button class="subject-card"
-                data-subject="CN">
+            <button class="subject-card" data-subject="CN">
 
                 <div class="subject-icon">
                     🌐
@@ -356,8 +360,7 @@
             </button>
 
 
-            <button class="subject-card"
-                data-subject="OS">
+            <button class="subject-card" data-subject="OS">
 
                 <div class="subject-icon">
                     ⚙️
@@ -378,8 +381,7 @@
             </button>
 
 
-            <button class="subject-card"
-                data-subject="PYTHON">
+            <button class="subject-card" data-subject="PYTHON">
 
                 <div class="subject-icon">
                     🐍
@@ -404,8 +406,7 @@
 
         <!-- DYNAMIC SUBJECT CONTENT -->
 
-        <div id="subject-content"
-            class="subject-content">
+        <div id="subject-content" class="subject-content">
 
             <div class="empty-state">
 
@@ -431,8 +432,7 @@
 
     <!-- ================= QUIZ ================= -->
 
-    <section class="quiz"
-        id="quiz">
+    <section class="quiz" id="quiz">
 
         <div class="section-heading">
 
@@ -487,11 +487,220 @@
 
     </section>
 
+    <!-- =================AI Tour ===================-->
+    <section id="ai-tutor" class="ai-tutor-section">
+        <div class="section-heading">
+            <h2>🤖 AI Study Tutor</h2>
+            <p>Ask anything. Understand concepts with your personal AI tutor.</p>
+        </div>
+
+        <div class="ai-tutor-card">
+
+            <label for="tutor-subject">Choose Subject</label>
+            <select id="tutor-subject">
+                <option value="DSA">Data Structures & Algorithms</option>
+                <option value="COA">Computer Organization</option>
+                <option value="DBMS">DBMS</option>
+                <option value="CN">Computer Networks</option>
+                <option value="OS">Operating Systems</option>
+                <option value="PYTHON">Python</option>
+            </select>
+
+            <label for="tutor-question">What do you want to learn?</label>
+            <textarea id="tutor-question" rows="4"
+                placeholder="Example: Explain binary search with an example..."></textarea>
+
+            <button id="ask-tutor-btn" type="button" onclick="askStudyTutor()">
+                Ask AI Tutor
+            </button>
+
+            <p id="tutor-status" aria-live="polite"></p>
+            <div id="tutor-answer" class="tutor-answer">
+                Your AI-generated explanation will appear here.
+            </div>
+        </div>
+    </section>
+
+    <!-- =================AI Notes ================== -->
+    <section id="ai-notes" class="ai-tutor-section">
+        <div class="section-heading">
+            <h2>📝 AI Notes Generator</h2>
+            <p>Generate exam-ready notes using Gemini AI.</p>
+        </div>
+
+        <div class="ai-tutor-card">
+            <label for="notes-subject">Select Subject</label>
+            <select id="notes-subject">
+                <option value="DSA">DSA</option>
+                <option value="DBMS">DBMS</option>
+                <option value="OS">Operating Systems</option>
+                <option value="CN">Computer Networks</option>
+                <option value="COA">COA</option>
+                <option value="PYTHON">Python</option>
+            </select>
+
+            <label for="notes-topic">Enter Topic</label>
+            <input type="text" id="notes-topic" placeholder="Example: Process Scheduling">
+
+            <button id="generate-notes-btn" onclick="generateAINotes()">
+                Generate Notes
+            </button>
+
+            <p id="notes-status" aria-live="polite"></p>
+
+            <div id="notes-output" class="tutor-answer">
+                Your generated notes will appear here.
+            </div>
+        </div>
+    </section>
+
+    <!--================= AI Quiz ================== -->
+    <section id="ai-quiz" class="ai-tutor-section">
+        <div class="section-heading">
+            <h2>🧠 AI Quiz Generator</h2>
+            <p>Test your knowledge with AI-generated questions.</p>
+        </div>
+
+        <div class="ai-tutor-card">
+            <label for="ai-quiz-subject">Choose Subject</label>
+            <select id="ai-quiz-subject">
+                <option value="DSA">DSA</option>
+                <option value="DBMS">DBMS</option>
+                <option value="OS">Operating Systems</option>
+                <option value="CN">Computer Networks</option>
+                <option value="COA">COA</option>
+                <option value="PYTHON">Python</option>
+            </select>
+
+            <label for="ai-quiz-topic">Enter Topic</label>
+            <input type="text" id="ai-quiz-topic" placeholder="Example: Binary Search">
+
+            <button id="generate-ai-quiz" onclick="generateAIQuiz()">
+                Generate Quiz
+            </button>
+
+            <p id="ai-quiz-status" aria-live="polite"></p>
+
+            <div id="ai-quiz-container"></div>
+        </div>
+    </section>
+    <!-- ================= Flashcards ================-->
+    <section id="ai-flashcards" class="ai-tutor-section">
+
+        <div class="section-heading">
+            <h2>🃏 AI Flashcards</h2>
+            <p>Learn faster with smart question-answer cards.</p>
+        </div>
+
+        <div class="ai-tutor-card">
+
+            <label for="flashcard-subject">Select Subject</label>
+            <select id="flashcard-subject">
+                <option value="DSA">DSA</option>
+                <option value="DBMS">DBMS</option>
+                <option value="OS">Operating Systems</option>
+                <option value="CN">Computer Networks</option>
+                <option value="COA">COA</option>
+                <option value="PYTHON">Python</option>
+            </select>
+
+            <label for="flashcard-topic">Enter Topic</label>
+            <input type="text" id="flashcard-topic" placeholder="Example: Hashing">
+
+            <button onclick="generateFlashcards()" id="flashcard-btn">
+                Generate Flashcards
+            </button>
+
+            <p id="flashcard-status" aria-live="polite"></p>
+
+            <div id="flashcard-container"></div>
+
+        </div>
+    </section>
+
+    <!-- ================= AI Planner ===============-->
+    <!-- AI STUDY PLANNER -->
+
+    <section id="ai-planner" class="ai-tutor-section">
+
+        <div class="section-heading">
+            <h2>📅 AI Study Planner</h2>
+            <p>Create your personalized study timetable with AI.</p>
+        </div>
+
+        <div class="ai-tutor-card">
+
+            <label for="planner-subject">Select Subject</label>
+            <select id="planner-subject">
+                <option value="DSA">DSA</option>
+                <option value="DBMS">DBMS</option>
+                <option value="OS">Operating Systems</option>
+                <option value="CN">Computer Networks</option>
+                <option value="COA">COA</option>
+                <option value="PYTHON">Python</option>
+            </select>
+
+            <label for="planner-syllabus">Enter Your Syllabus</label>
+            <textarea id="planner-syllabus" rows="5"
+                placeholder="Example: Arrays, Linked List, Trees, Graphs, Hashing..."></textarea>
+
+            <label for="planner-exam-date">Exam Date</label>
+            <input type="date" id="planner-exam-date">
+
+            <label for="planner-hours">Daily Available Study Hours</label>
+            <input type="number" id="planner-hours" min="1" max="16" placeholder="Example: 4">
+
+            <button id="generate-planner-btn" onclick="generateStudyPlan()">
+                Generate Study Plan
+            </button>
+
+            <p id="planner-status" aria-live="polite"></p>
+
+            <div id="planner-output" class="tutor-answer">
+                Your personalized study plan will appear here.
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ================= AI Summariser =============-->
+
+    <section id="ai-summarizer" class="ai-tutor-section">
+        <div class="section-heading">
+            <h2>📝 AI Summarizer</h2>
+            <p>Convert lengthy study material into quick revision notes.</p>
+        </div>
+
+        <div class="ai-tutor-card">
+            <label for="summary-subject">Select Subject</label>
+            <select id="summary-subject">
+                <option value="DSA">DSA</option>
+                <option value="DBMS">DBMS</option>
+                <option value="OS">Operating Systems</option>
+                <option value="CN">Computer Networks</option>
+                <option value="COA">COA</option>
+                <option value="PYTHON">Python</option>
+            </select>
+
+            <label for="summary-input">Paste Your Study Material</label>
+            <textarea id="summary-input" rows="8" placeholder="Paste your notes or study material here..."></textarea>
+
+            <button id="summarize-btn" onclick="summarizeNotes()">
+                Generate Summary
+            </button>
+
+            <p id="summary-status" aria-live="polite"></p>
+
+            <div id="summary-output" class="tutor-answer">
+                Your AI-generated summary will appear here.
+            </div>
+        </div>
+    </section>
+
 
     <!-- ================= PROGRESS ================= -->
 
-    <section class="progress"
-        id="progress">
+    <section class="progress" id="progress">
 
         <div class="section-heading">
 
@@ -527,8 +736,7 @@
 
             <div class="progress-bar">
 
-                <div id="progress-fill"
-                    class="progress-fill">
+                <div id="progress-fill" class="progress-fill">
                 </div>
 
             </div>
