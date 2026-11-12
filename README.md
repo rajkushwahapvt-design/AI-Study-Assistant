@@ -1,110 +1,122 @@
-# 🤖 AI Study Assistant
+# AI Study Assistant 🤖📚
 
-An interactive and user-friendly study platform designed to help students organize their learning, practice technical subjects, and track their study progress in one place.
+An AI-powered study platform designed to make learning smarter, easier, and more interactive. It helps students understand concepts, generate study materials, practice quizzes, and organize their preparation using AI.
 
-AI Study Assistant provides a clean dashboard, subject-wise learning resources, interactive quizzes, and progress tracking to make self-study more organized and effective.
+## ✨ Features
 
-## 🚀 Features
+### AI-Powered Features
+- **AI Study Tutor:** Get explanations and answers to your study-related questions.
+- **AI Notes Generator:** Generate structured notes for any topic.
+- **AI Quiz Generator:** Create quizzes to test your knowledge.
+- **AI Flashcards:** Generate flashcards for quick revision.
+- **AI Study Planner:** Create personalized study plans.
+- **AI Summarizer:** Summarize lengthy study materials into concise content.
 
-* 📚 **Subject-Wise Learning:** Access organized study sections for multiple computer science subjects.
-* 💻 **DSA Practice:** Dedicated section for Data Structures and Algorithms.
-* 📝 **Interactive Quizzes:** Test your knowledge through subject-based quizzes.
-* 📊 **Progress Tracking:** Monitor your learning and quiz performance.
-* 🌙 **Dark Mode:** Comfortable interface for studying in low-light environments.
-* 🎯 **Organized Dashboard:** Access study materials and learning activities from one place.
-* 📱 **Responsive Design:** Simple and accessible user interface.
-
-## 📖 Available Subjects
-
-The platform currently includes the following subjects:
-
-* Data Structures and Algorithms (DSA)
-* Computer Organization and Architecture (COA)
-* Database Management Systems (DBMS)
-* Computer Networks (CN)
-* Operating Systems (OS)
-* Python Programming
+### Study Management
+- Subject-wise learning and topic organization.
+- Track completed topics.
+- Monitor quiz scores and study progress.
+- Progress tracking using Local Storage.
+- Interactive and user-friendly interface.
 
 ## 🛠️ Tech Stack
 
-| Technology    | Purpose                                          |
-| ------------- | ------------------------------------------------ |
-| HTML5         | Website Structure                                |
-| CSS3          | Styling and Responsive UI                        |
-| JavaScript    | Functionality and Interactivity                  |
-| JSON          | Subject Data Management                          |
-| Boxicons      | Icons                                            |
-| Local Storage | Client-Side Data Persistence (where implemented) |
+**Frontend**
+- HTML5
+- CSS3
+- JavaScript
 
-## 📂 Project Structure
+**Backend**
+- Node.js
+- Express.js
+- REST API
+
+**AI Integration**
+- Google Gemini API
+
+**Tools**
+- Git & GitHub
+- VS Code
+
+## 📁 Project Structure
 
 ```text
 AI-Study-Assistant/
 │
 ├── index.html
-├── style.css
-├── script.js
+├── ai_assistant.css
+├── ai_assistant.js
 ├── subjects.json
 │
-├── assets/
-│   ├── images/
-│   └── icons/
-│
-└── README.md
+└── backend/
+    ├── server.js
+    ├── package.json
+    └── package-lock.json
 ```
 
-## ⚙️ Installation & Setup
+## ⚙️ Getting Started
 
-Follow these steps to run the project locally.
-
-**1. Clone the repository**
+### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/rajkushwahapvt-design/AI-Study-Assistant.git
+git clone YOUR_GITHUB_REPOSITORY_URL
 ```
 
-**2. Navigate to the project directory**
+### 2. Setup Backend
 
 ```bash
-cd AI-Study-Assistant
+cd backend
+npm install
 ```
 
-**3. Open the project**
+### 3. Configure Environment Variables
 
-Open `index.html` in your browser.
+Create a `.env` file inside the backend folder:
 
-For the best experience, use the Live Server extension in VS Code.
+```env
+GEMINI_API_KEY=your_gemini_api_key
+GEMINI_MODEL=gemini-3.5-flash-lite
+PORT=3000
+```
 
-## 🎯 Project Objectives
+Never share or upload your actual API key.
 
-* Make technical subject preparation more organized.
-* Provide an interactive learning environment.
-* Encourage consistent self-study.
-* Help students evaluate their knowledge through quizzes.
-* Track learning progress in a structured way.
+### 4. Start Backend
 
-## 🔮 Future Improvements
+```bash
+npm run dev
+```
 
-* Integration of an AI-powered chatbot.
-* Personalized study recommendations.
-* AI-generated quizzes and practice questions.
-* Backend integration for user authentication.
-* Cloud-based progress synchronization.
-* Personalized learning roadmaps.
+Backend runs at:
 
-## 👨‍💻 Developer
+`http://localhost:3000`
+
+### 5. Run Frontend
+
+Open the project using VS Code Live Server.
+
+## 🔐 Security
+
+- Gemini API requests are handled through the backend.
+- API credentials are stored in environment variables.
+- Sensitive files are excluded using `.gitignore`.
+
+## 🚀 Future Improvements
+
+- User authentication and authorization.
+- MongoDB integration for cloud-based progress storage.
+- Personalized student dashboards.
+- Deployment for public access.
+
+## 👨‍💻 Author
 
 **Raj Kushwaha**
 
-B.Tech CSE (AI & ML) Student | Aspiring AI/ML Developer
+B.Tech Computer Science (AI & ML) Student
 
-* GitHub: [@rajkushwahapvt-design](https://github.com/rajkushwahapvt-design)
-* LinkedIn: [Connect with me](https://www.linkedin.com/)
-
-## ⭐ Support
-
-If you find this project useful, consider giving it a ⭐ on GitHub!
+- GitHub: [rajkushwahapvt-design](https://github.com/rajkushwahapvt-design)
+- LinkedIn: [Raj Kushwaha](https://linkedin.com/in/raj-kushwaha-1021a1329/)
 
 ---
 
-**Built with ❤️ to make learning smarter and more organized.**
+⭐ If you find this project useful, consider giving it a star!
