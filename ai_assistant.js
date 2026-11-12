@@ -1,4 +1,3 @@
-
 /* =========================
    GLOBAL DATA
 ========================= */
@@ -6,38 +5,19 @@
 let subjectData = {};
 
 let completedTopics =
-    JSON.parse(
-        localStorage.getItem(
-            "completedTopics"
-        )
-    ) || [];
+    JSON.parse(localStorage.getItem("completedTopics")) || [];
 
 let quizScore =
-    Number(
-        localStorage.getItem(
-            "quizScore"
-        )
-    ) || 0;
+    Number(localStorage.getItem("quizScore")) || 0;
 
 
 /* =========================
    ELEMENTS
 ========================= */
 
-const subjectCards =
-    document.querySelectorAll(
-        ".subject-card"
-    );
-
-const subjectContent =
-    document.getElementById(
-        "subject-content"
-    );
-
-const themeBtn =
-    document.getElementById(
-        "theme-btn"
-    );
+const subjectCards = document.querySelectorAll(".subject-card");
+const subjectContent = document.getElementById("subject-content");
+const themeBtn = document.getElementById("theme-btn");
 
 
 /* =========================
@@ -45,50 +25,29 @@ const themeBtn =
 ========================= */
 
 fetch("subjects.json")
-
     .then(function (response) {
-
         if (!response.ok) {
-
-            throw new Error(
-                "Could not load subjects.json"
-            );
-
+            throw new Error("Could not load subjects.json");
         }
 
         return response.json();
-
     })
-
     .then(function (data) {
-
         subjectData = data;
 
-        console.log(
-            "Subject data loaded successfully"
-        );
+        console.log("Subject data loaded successfully");
 
         updateProgress();
-
     })
-
     .catch(function (error) {
-
         console.error(error);
 
         subjectContent.innerHTML = `
             <div class="empty-state">
-                <h3>
-                    ⚠️ Could not load subjects
-                </h3>
-
-                <p>
-                    Make sure you are using
-                    Live Server.
-                </p>
+                <h3>⚠️ Could not load subjects</h3>
+                <p>Make sure you are using Live Server.</p>
             </div>
         `;
-
     });
 
 
@@ -97,19 +56,10 @@ fetch("subjects.json")
 ========================= */
 
 subjectCards.forEach(function (card) {
-
-    card.addEventListener(
-        "click",
-        function () {
-
-            const subject =
-                card.dataset.subject;
-
-            showSubject(subject);
-
-        }
-    );
-
+    card.addEventListener("click", function () {
+        const subject = card.dataset.subject;
+        showSubject(subject);
+    });
 });
 
 
@@ -119,85 +69,55 @@ subjectCards.forEach(function (card) {
 
 function showSubject(subject) {
 
-    const data =
-        subjectData[subject];
-
+    const data = subjectData[subject];
 
     if (!data) {
-
         return;
-
     }
-
 
     subjectContent.innerHTML = `
 
-        <h2>
-            ${subject}
-        </h2>
+        <h2>${subject}</h2>
 
-        <p>
-            ${data.description}
-        </p>
+        <p>${data.description}</p>
 
-        <h3>
-            📚 Topics
-        </h3>
+        <h3>📚 Topics</h3>
 
         <div class="topic-list">
 
-            ${data.topics.map(
-        function (topic, index) {
+            ${data.topics.map(function (topic, index) {
 
-            const topicId =
-                `${subject}-${topic.name}`;
+                const topicId = `${subject}-${topic.name}`;
 
-            const isCompleted =
-                completedTopics.includes(
-                    topicId
-                );
+                const isCompleted =
+                    completedTopics.includes(topicId);
 
+                return `
 
-            return `
+                    <div
+                        class="topic-card"
+                        onclick="openTopic('${subject}', ${index})"
+                    >
 
-                        <div
-                            class="topic-card"
-                            onclick="openTopic(
-                                '${subject}',
-                                ${index}
-                            )"
-                        >
+                        <h4>${topic.name}</h4>
 
-                            <h4>
-                                ${topic.name}
-                            </h4>
+                        <p>
+                            ${isCompleted ? "✓ Completed" : "Learn →"}
+                        </p>
 
-                            <p>
+                    </div>
 
-                                ${isCompleted
-                    ? "✓ Completed"
-                    : "Learn →"
-                }
+                `;
 
-                            </p>
-
-                        </div>
-
-                    `;
-
-        }
-    ).join("")}
+            }).join("")}
 
         </div>
-
     `;
-
 
     subjectContent.scrollIntoView({
         behavior: "smooth",
         block: "center"
     });
-
 }
 
 
@@ -214,6 +134,7 @@ function openTopic(subject, index) {
     const isCompleted = completedTopics.includes(topicId);
 
     subjectContent.innerHTML = `
+
         <div class="topic-detail">
 
             <button onclick="showSubject('${subject}')">
@@ -233,11 +154,13 @@ function openTopic(subject, index) {
             <h3>💡 Key Concepts</h3>
 
             <div class="key-points">
+
                 ${topic.keyPoints.map(point => `
                     <div class="key-point">
                         ✓ ${point}
                     </div>
                 `).join("")}
+
             </div>
 
             <h3>💻 Example</h3>
@@ -303,6 +226,12 @@ function openTopic(subject, index) {
         block: "center"
     });
 }
+
+
+/* =========================
+   CHECK PRACTICE ANSWER
+========================= */
+
 function checkPracticeAnswer(subject, index) {
 
     const topic = subjectData[subject].topics[index];
@@ -336,57 +265,27 @@ function checkPracticeAnswer(subject, index) {
    COMPLETE TOPIC
 ========================= */
 
-function completeTopic(
-    subject,
-    index
-) {
+function completeTopic(subject, index) {
 
-    const topic =
-        subjectData[
-            subject
-        ].topics[index];
+    const topic = subjectData[subject].topics[index];
 
+    const topicId = `${subject}-${topic.name}`;
 
-    const topicId =
-        `${subject}-${topic.name}`;
-
-
-    if (
-        !completedTopics.includes(
-            topicId
-        )
-    ) {
-
-        completedTopics.push(
-            topicId
-        );
-
+    if (!completedTopics.includes(topicId)) {
+        completedTopics.push(topicId);
     }
-
 
     localStorage.setItem(
         "completedTopics",
-        JSON.stringify(
-            completedTopics
-        )
+        JSON.stringify(completedTopics)
     );
 
+    const button = document.getElementById("complete-btn");
 
-    const button =
-        document.getElementById(
-            "complete-btn"
-        );
-
-
-    button.textContent =
-        "✓ Completed";
-
-    button.disabled =
-        true;
-
+    button.textContent = "✓ Completed";
+    button.disabled = true;
 
     updateProgress();
-
 }
 
 
@@ -398,19 +297,11 @@ function getTotalTopics() {
 
     let total = 0;
 
-
-    Object.values(
-        subjectData
-    ).forEach(function (subject) {
-
-        total +=
-            subject.topics.length;
-
+    Object.values(subjectData).forEach(function (subject) {
+        total += subject.topics.length;
     });
 
-
     return total;
-
 }
 
 
@@ -420,99 +311,57 @@ function getTotalTopics() {
 
 function updateProgress() {
 
-    if (
-        Object.keys(subjectData).length === 0
-    ) {
-
+    if (Object.keys(subjectData).length === 0) {
         return;
-
     }
 
+    const total = getTotalTopics();
 
-    const total =
-        getTotalTopics();
+    const completed = completedTopics.length;
 
+    const remaining = total - completed;
 
-    const completed =
-        completedTopics.length;
-
-
-    const remaining =
-        total - completed;
-
-
-    const percentage =
-        total === 0
-            ? 0
-            : Math.round(
-                (completed / total) * 100
-            );
+    const percentage = total === 0
+        ? 0
+        : Math.round((completed / total) * 100);
 
 
     /* Progress */
 
-    document.getElementById(
-        "progress-percent"
-    ).textContent =
+    document.getElementById("progress-percent").textContent =
         `${percentage}%`;
 
-
-    document.getElementById(
-        "progress-fill"
-    ).style.width =
+    document.getElementById("progress-fill").style.width =
         `${percentage}%`;
 
-
-    document.getElementById(
-        "progress-text"
-    ).textContent =
+    document.getElementById("progress-text").textContent =
         `${completed} / ${total} Topics Completed`;
 
 
     /* Stats */
 
-    document.getElementById(
-        "completed-count"
-    ).textContent =
+    document.getElementById("completed-count").textContent =
         completed;
 
-
-    document.getElementById(
-        "remaining-count"
-    ).textContent =
+    document.getElementById("remaining-count").textContent =
         remaining;
 
-
-    document.getElementById(
-        "progress-score"
-    ).textContent =
+    document.getElementById("progress-score").textContent =
         `${quizScore}%`;
 
 
     /* Dashboard */
 
-    document.getElementById(
-        "dashboard-completed"
-    ).textContent =
+    document.getElementById("dashboard-completed").textContent =
         completed;
 
-
-    document.getElementById(
-        "dashboard-progress"
-    ).textContent =
+    document.getElementById("dashboard-progress").textContent =
         `${percentage}%`;
 
-
-    document.getElementById(
-        "dashboard-score"
-    ).textContent =
+    document.getElementById("dashboard-score").textContent =
         `${quizScore}%`;
 
-
-    updateRecommendation(
-        percentage
-    );
-
+    updateRecommendation(percentage);
 }
 
 
@@ -520,261 +369,134 @@ function updateProgress() {
    AI RECOMMENDATION
 ========================= */
 
-function updateRecommendation(
-    percentage
-) {
+function updateRecommendation(percentage) {
 
-    const title =
-        document.getElementById(
-            "recommendation-title"
-        );
+    const title = document.getElementById("recommendation-title");
 
-    const text =
-        document.getElementById(
-            "recommendation-text"
-        );
-
+    const text = document.getElementById("recommendation-text");
 
     if (percentage === 0) {
 
-        title.textContent =
-            "Start with Arrays 🚀";
+        title.textContent = "Start with Arrays 🚀";
 
         text.textContent =
             "Begin your journey by learning the fundamentals of DSA.";
 
-    }
+    } else if (percentage < 30) {
 
-    else if (percentage < 30) {
-
-        title.textContent =
-            "Keep building your foundation 📚";
+        title.textContent = "Keep building your foundation 📚";
 
         text.textContent =
             "Complete a few more topics to build a strong foundation.";
 
-    }
+    } else if (percentage < 70) {
 
-    else if (percentage < 70) {
-
-        title.textContent =
-            "You're making good progress 🔥";
+        title.textContent = "You're making good progress 🔥";
 
         text.textContent =
             "Keep practicing and complete the remaining topics.";
 
-    }
+    } else {
 
-    else {
-
-        title.textContent =
-            "Excellent progress! 🚀";
+        title.textContent = "Excellent progress! 🚀";
 
         text.textContent =
             "You are doing great. Start revising advanced concepts.";
-
     }
-
 }
-
-
 /* =========================
-   QUIZ
+   NORMAL QUIZ
 ========================= */
 
 const questions = [
 
     {
-        question:
-            "What is an array?",
-
+        question: "What is an array?",
         options: [
             "Data Structure",
             "Linear Data Structure",
             "Non-Linear Data Structure",
             "None"
         ],
-
-        answer:
-            "Linear Data Structure"
+        answer: "Linear Data Structure"
     },
 
-
     {
-        question:
-            "Which language is commonly used in AI?",
-
-        options: [
-            "Python",
-            "HTML",
-            "CSS",
-            "SQL"
-        ],
-
-        answer:
-            "Python"
+        question: "Which language is commonly used in AI?",
+        options: ["Python", "HTML", "CSS", "SQL"],
+        answer: "Python"
     },
 
-
     {
-        question:
-            "Which data structure follows LIFO?",
-
-        options: [
-            "Queue",
-            "Stack",
-            "Array",
-            "Graph"
-        ],
-
-        answer:
-            "Stack"
+        question: "Which data structure follows LIFO?",
+        options: ["Queue", "Stack", "Array", "Graph"],
+        answer: "Stack"
     },
 
-
     {
-        question:
-            "Which data structure follows FIFO?",
-
-        options: [
-            "Stack",
-            "Tree",
-            "Queue",
-            "Graph"
-        ],
-
-        answer:
-            "Queue"
+        question: "Which data structure follows FIFO?",
+        options: ["Stack", "Tree", "Queue", "Graph"],
+        answer: "Queue"
     },
 
-
     {
-        question:
-            "Which search algorithm requires a sorted array?",
-
-        options: [
-            "Linear Search",
-            "Binary Search",
-            "DFS",
-            "BFS"
-        ],
-
-        answer:
-            "Binary Search"
+        question: "Which search algorithm requires a sorted array?",
+        options: ["Linear Search", "Binary Search", "DFS", "BFS"],
+        answer: "Binary Search"
     },
 
-
     {
-        question:
-            "Which language is mainly used for web page structure?",
-
-        options: [
-            "Python",
-            "HTML",
-            "SQL",
-            "C++"
-        ],
-
-        answer:
-            "HTML"
+        question: "Which language is mainly used for web page structure?",
+        options: ["Python", "HTML", "SQL", "C++"],
+        answer: "HTML"
     },
 
-
     {
-        question:
-            "Which SQL command is used to retrieve data?",
-
-        options: [
-            "INSERT",
-            "DELETE",
-            "SELECT",
-            "UPDATE"
-        ],
-
-        answer:
-            "SELECT"
+        question: "Which SQL command is used to retrieve data?",
+        options: ["INSERT", "DELETE", "SELECT", "UPDATE"],
+        answer: "SELECT"
     },
 
-
     {
-        question:
-            "How many layers are in the OSI model?",
-
-        options: [
-            "5",
-            "6",
-            "7",
-            "8"
-        ],
-
-        answer:
-            "7"
+        question: "How many layers are in the OSI model?",
+        options: ["5", "6", "7", "8"],
+        answer: "7"
     },
 
-
     {
-        question:
-            "Which OS component manages processes?",
-
+        question: "Which OS component manages processes?",
         options: [
             "Operating System",
             "Browser",
             "Compiler",
             "Database"
         ],
-
-        answer:
-            "Operating System"
+        answer: "Operating System"
     },
 
-
     {
-        question:
-            "What does CPU stand for?",
-
+        question: "What does CPU stand for?",
         options: [
             "Central Processing Unit",
             "Computer Processing Utility",
             "Central Program Unit",
             "Control Processing Unit"
         ],
-
-        answer:
-            "Central Processing Unit"
+        answer: "Central Processing Unit"
     }
 
 ];
 
 
 let currentQuestion = 0;
-
 let currentScore = 0;
 
 
-const questionNumber =
-    document.getElementById(
-        "question-number"
-    );
-
-const questionText =
-    document.getElementById(
-        "question-text"
-    );
-
-const options =
-    document.getElementById(
-        "options"
-    );
-
-const nextBtn =
-    document.getElementById(
-        "next-btn"
-    );
-
-const scoreText =
-    document.getElementById(
-        "score"
-    );
+const questionNumber = document.getElementById("question-number");
+const questionText = document.getElementById("question-text");
+const options = document.getElementById("options");
+const nextBtn = document.getElementById("next-btn");
+const scoreText = document.getElementById("score");
 
 
 /* =========================
@@ -783,54 +505,38 @@ const scoreText =
 
 function showQuestion() {
 
-    const question =
-        questions[
-        currentQuestion
-        ];
-
+    const question = questions[currentQuestion];
 
     questionNumber.textContent =
         `Question ${currentQuestion + 1} / ${questions.length}`;
 
-
-    questionText.textContent =
-        question.question;
-
+    questionText.textContent = question.question;
 
     options.innerHTML = "";
 
+    question.options.forEach(function (option) {
 
-    question.options.forEach(
-        function (option) {
+        const label = document.createElement("label");
 
-            const label =
-                document.createElement(
-                    "label"
-                );
+        label.innerHTML = `
+            <input
+                type="radio"
+                name="answer"
+                value="${option}"
+            >
+            ${option}
+        `;
 
+        options.appendChild(label);
 
-            label.innerHTML = `
+    });
 
-                <input
-                    type="radio"
-                    name="answer"
-                    value="${option}"
-                >
-
-                ${option}
-
-            `;
-
-
-            options.appendChild(
-                label
-            );
-
-        }
-    );
-
+    nextBtn.textContent = "Next Question →";
+    nextBtn.style.display = "inline-block";
 }
 
+
+/* Start Quiz */
 
 showQuestion();
 
@@ -839,136 +545,75 @@ showQuestion();
    NEXT QUESTION
 ========================= */
 
-nextBtn.addEventListener(
-    "click",
-    function () {
+nextBtn.addEventListener("click", function () {
 
-        const selected =
-            document.querySelector(
-                'input[name="answer"]:checked'
-            );
+    const selected = document.querySelector(
+        'input[name="answer"]:checked'
+    );
 
-
-        if (!selected) {
-
-            alert(
-                "Please select an answer!"
-            );
-
-            return;
-
-        }
-
-
-        const correct =
-            questions[
-                currentQuestion
-            ].answer;
-
-
-        const labels =
-            document.querySelectorAll(
-                "#options label"
-            );
-
-
-        labels.forEach(
-            function (label) {
-
-                const input =
-                    label.querySelector(
-                        "input"
-                    );
-
-
-                input.disabled =
-                    true;
-
-
-                if (
-                    input.value ===
-                    correct
-                ) {
-
-                    label.style.background =
-                        "#166534";
-
-                    label.style.borderColor =
-                        "#22c55e";
-
-                    label.style.color =
-                        "white";
-
-                }
-
-
-                if (
-                    input.checked &&
-                    input.value !== correct
-                ) {
-
-                    label.style.background =
-                        "#991b1b";
-
-                    label.style.borderColor =
-                        "#ef4444";
-
-                    label.style.color =
-                        "white";
-
-                }
-
-            }
-        );
-
-
-        if (
-            selected.value === correct
-        ) {
-
-            currentScore++;
-
-        }
-
-
-        scoreText.textContent =
-            `Score: ${currentScore}`;
-
-
-        nextBtn.textContent =
-            "Next →";
-
-
-        setTimeout(
-            function () {
-
-                currentQuestion++;
-
-
-                if (
-                    currentQuestion <
-                    questions.length
-                ) {
-
-                    showQuestion();
-
-                    nextBtn.textContent =
-                        "Next Question →";
-
-                }
-
-                else {
-
-                    finishQuiz();
-
-                }
-
-            },
-            800
-        );
-
+    if (!selected) {
+        alert("Please select an answer!");
+        return;
     }
-);
+
+    const correct = questions[currentQuestion].answer;
+
+    const labels = document.querySelectorAll("#options label");
+
+    labels.forEach(function (label) {
+
+        const input = label.querySelector("input");
+
+        input.disabled = true;
+
+        if (input.value === correct) {
+
+            label.style.background = "#166534";
+            label.style.borderColor = "#22c55e";
+            label.style.color = "white";
+
+        }
+
+        if (input.checked && input.value !== correct) {
+
+            label.style.background = "#991b1b";
+            label.style.borderColor = "#ef4444";
+            label.style.color = "white";
+
+        }
+
+    });
+
+
+    if (selected.value === correct) {
+        currentScore++;
+    }
+
+    scoreText.textContent = `Score: ${currentScore}`;
+
+    nextBtn.textContent = "Please wait...";
+
+    nextBtn.disabled = true;
+
+    setTimeout(function () {
+
+        currentQuestion++;
+
+        if (currentQuestion < questions.length) {
+
+            showQuestion();
+
+            nextBtn.disabled = false;
+
+        } else {
+
+            finishQuiz();
+
+        }
+
+    }, 800);
+
+});
 
 
 /* =========================
@@ -977,39 +622,30 @@ nextBtn.addEventListener(
 
 function finishQuiz() {
 
-    const percentage =
-        Math.round(
-            (
-                currentScore /
-                questions.length
-            ) * 100
-        );
-
-
-    localStorage.setItem(
-        "quizScore",
-        percentage
+    const percentage = Math.round(
+        (currentScore / questions.length) * 100
     );
 
+    quizScore = percentage;
 
-    quizScore =
-        percentage;
+    localStorage.setItem("quizScore", quizScore);
 
-
-    questionNumber.textContent =
-        "🎉 Quiz Completed!";
-
+    questionNumber.textContent = "🎉 Quiz Completed!";
 
     questionText.textContent =
         `Your final score is ${currentScore}/${questions.length}`;
 
+    options.innerHTML = `
+        <div class="quiz-result">
 
-    options.innerHTML = "";
+            <h2>${currentScore} / ${questions.length}</h2>
 
+            <p>Your Score: ${percentage}%</p>
 
-    nextBtn.style.display =
-        "none";
+        </div>
+    `;
 
+    nextBtn.style.display = "none";
 
     updateProgress();
 
@@ -1020,139 +656,184 @@ function finishQuiz() {
    THEME
 ========================= */
 
-themeBtn.addEventListener(
-    "click",
-    function () {
+themeBtn.addEventListener("click", function () {
 
-        document.body.classList.toggle(
-            "light-mode"
-        );
+    document.body.classList.toggle("light-mode");
 
+    if (document.body.classList.contains("light-mode")) {
 
-        if (
-            document.body.classList.contains(
-                "light-mode"
-            )
-        ) {
+        themeBtn.textContent = "🌙 Dark";
 
-            themeBtn.textContent =
-                "🌙 Dark";
+    } else {
 
-        }
-
-        else {
-
-            themeBtn.textContent =
-                "☀️ Light";
-
-        }
+        themeBtn.textContent = "☀️ Light";
 
     }
-);
+
+});
 
 
 /* =========================
    RESET PROGRESS
 ========================= */
 
-document.getElementById(
-    "reset-progress"
-).addEventListener(
+document.getElementById("reset-progress").addEventListener(
     "click",
     function () {
 
-        const confirmReset =
-            confirm(
-                "Are you sure you want to reset your progress?"
-            );
-
+        const confirmReset = confirm(
+            "Are you sure you want to reset your progress?"
+        );
 
         if (!confirmReset) {
-
             return;
-
         }
-
 
         completedTopics = [];
 
         quizScore = 0;
 
+        localStorage.removeItem("completedTopics");
 
-        localStorage.removeItem(
-            "completedTopics"
-        );
-
-        localStorage.removeItem(
-            "quizScore"
-        );
-
+        localStorage.removeItem("quizScore");
 
         updateProgress();
 
-
-        alert(
-            "Progress has been reset!"
-        );
+        alert("Progress has been reset!");
 
     }
 );
-let streak = Number(localStorage.getItem("streak")) || 0;
-let lastStudyDate = localStorage.getItem("lastStudyDate") || "";
+
+
+/* =========================
+   STUDY STREAK
+========================= */
+
+let streak =
+    Number(localStorage.getItem("streak")) || 0;
+
+let lastStudyDate =
+    localStorage.getItem("lastStudyDate") || "";
+
+
 function updateStreak() {
 
     const today = new Date().toDateString();
 
     if (!lastStudyDate) {
-        streak = 1;
-        lastStudyDate = today;
-    }
 
-    else if (lastStudyDate !== today) {
+        streak = 1;
+
+        lastStudyDate = today;
+
+    } else if (lastStudyDate !== today) {
 
         const lastDate = new Date(lastStudyDate);
+
         const currentDate = new Date(today);
 
-        const difference =
-            Math.floor(
-                (currentDate - lastDate) /
-                (1000 * 60 * 60 * 24)
-            );
+        const difference = Math.floor(
+            (currentDate - lastDate) / (1000 * 60 * 60 * 24)
+        );
 
         if (difference === 1) {
-            streak++;
-        }
 
-        else if (difference > 1) {
+            streak++;
+
+        } else if (difference > 1) {
+
             streak = 1;
+
         }
 
         lastStudyDate = today;
+
     }
 
-    localStorage.setItem(
-        "streak",
-        streak
-    );
+    localStorage.setItem("streak", streak);
 
-    localStorage.setItem(
-        "lastStudyDate",
-        lastStudyDate
-    );
+    localStorage.setItem("lastStudyDate", lastStudyDate);
 
-    const streakElement =
-        document.getElementById("streak-count");
+    const streakElement = document.getElementById("streak-count");
 
     if (streakElement) {
         streakElement.textContent = streak;
     }
+
 }
-// ================================
-// GEMINI AI STUDY TUTOR
-// ================================
+
+
+/* Update streak when page loads */
+
+updateStreak();
+
+/* =================================
+   SHARED AI BACKEND CONNECTION
+================================= */
+
+const AI_BACKEND_URL =
+    "https://ai-study-assistant-23tf.onrender.com";
+
+
+async function generateWithAI(prompt) {
+
+    const response = await fetch(
+        `${AI_BACKEND_URL}/api/generate`,
+        {
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+                prompt: prompt
+            })
+        }
+    );
+
+    const data = await response.json().catch(() => ({}));
+
+    if (!response.ok || data.success === false) {
+
+        throw new Error(
+            data.error ||
+            data.message ||
+            `AI backend request failed (HTTP ${response.status}).`
+        );
+
+    }
+
+    const generatedText =
+        data.text ??
+        data.response ??
+        data.generatedText ??
+        data.answer ??
+        data.result;
+
+    if (
+        typeof generatedText !== "string" ||
+        !generatedText.trim()
+    ) {
+
+        throw new Error(
+            data.message ||
+            "Backend responded, but no generated text was found."
+        );
+
+    }
+
+    return generatedText.trim();
+
+}
+
+
+/* =================================
+   AI STUDY TUTOR
+================================= */
 
 async function askStudyTutor() {
-    const apiKey = getGeminiApiKey();
+
     const subject = document
         .getElementById("tutor-subject")
         .value;
@@ -1162,20 +843,23 @@ async function askStudyTutor() {
         .value.trim();
 
     const status = document.getElementById("tutor-status");
+
     const answerBox = document.getElementById("tutor-answer");
+
     const askButton = document.getElementById("ask-tutor-btn");
 
-    if (!apiKey) {
-        status.textContent = "Please enter your Gemini API key.";
-        return;
-    }
 
     if (!question) {
+
         status.textContent = "Please enter a question first.";
+
         return;
+
     }
 
+
     const prompt = `
+
 You are a friendly and expert college-level study tutor.
 
 The student's subject is: ${subject}
@@ -1186,6 +870,7 @@ ${question}
 Explain the concept in simple language.
 
 Follow this structure:
+
 1. Basic explanation
 2. Important concepts
 3. Step-by-step explanation
@@ -1193,96 +878,90 @@ Follow this structure:
 5. Important points for exams
 
 Use clear headings and avoid unnecessary complexity.
+
 If the question involves programming, include a simple example.
+
 `;
 
+
     try {
+
         askButton.disabled = true;
+
         status.textContent = "AI Tutor is thinking...";
+
         answerBox.textContent = "Generating your explanation...";
 
-        const response = await fetch(
-            "https://generativelanguage.googleapis.com/v1beta/interactions",
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "x-goog-api-key": apiKey
-                },
-                body: JSON.stringify({
-                    model: "gemini-3.5-flash-lite",
-                    input: prompt
-                })
-            }
-        );
 
-        const data = await response.json();
+        const generatedText = await generateWithAI(prompt);
 
-        if (!response.ok) {
-            throw new Error(
-                data.error?.message || "Gemini API request failed."
-            );
-        }
 
-        const modelOutput = data.steps?.find(
-            step => step.type === "model_output"
-        );
+        answerBox.innerHTML = renderAIResponse(generatedText);
 
-        const generatedText = modelOutput?.content
-            ?.filter(item => item.type === "text")
-            .map(item => item.text)
-            .join("\n");
-
-        if (!generatedText) {
-            throw new Error("No text response received from Gemini.");
-        }
-
-       answerBox.textContent = cleanAIResponse(generatedText);
         status.textContent = "Explanation generated successfully!";
 
+
     } catch (error) {
+
         console.error("Gemini API Error:", error);
 
         status.textContent = "Something went wrong.";
+
         answerBox.textContent = error.message;
 
+
     } finally {
+
         askButton.disabled = false;
+
     }
+
 }
-// ================================
-// AI NOTES GENERATOR
-// ================================
+
+
+/* =================================
+   AI NOTES GENERATOR
+================================= */
 
 async function generateAINotes() {
 
-    const apiKey = getGeminiApiKey();
-    const subject = document.getElementById("notes-subject").value;
-    const topic = document.getElementById("notes-topic").value.trim();
+    const subject = document
+        .getElementById("notes-subject")
+        .value;
+
+    const topic = document
+        .getElementById("notes-topic")
+        .value.trim();
+
 
     const status = document.getElementById("notes-status");
+
     const output = document.getElementById("notes-output");
+
     const button = document.getElementById("generate-notes-btn");
 
-    if (!apiKey) {
-        status.textContent = "Enter your Gemini API key in AI Tutor section.";
-        return;
-    }
 
     if (!topic) {
+
         status.textContent = "Please enter a topic.";
+
         return;
+
     }
 
+
     const prompt = `
+
 You are an expert college study notes generator.
 
 Subject: ${subject}
+
 Topic: ${topic}
 
 Generate clear, accurate, exam-oriented notes in simple language.
 
 Include:
+
 1. Introduction
 2. Important concepts
 3. Detailed explanation
@@ -1291,780 +970,833 @@ Include:
 6. Five possible exam questions
 
 Use headings, bullet points and simple explanations.
+
 `;
 
+
     try {
+
         button.disabled = true;
+
         status.textContent = "Generating notes...";
+
         output.textContent = "Please wait...";
 
-        const response = await fetch(
-            "https://generativelanguage.googleapis.com/v1beta/interactions",
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "x-goog-api-key": apiKey
-                },
-                body: JSON.stringify({
-                    model: "gemini-3.5-flash-lite",
-                    input: prompt
-                })
-            }
-        );
 
-        const data = await response.json();
+        const generatedText = await generateWithAI(prompt);
 
-        if (!response.ok) {
-            throw new Error(data.error?.message || "API request failed.");
-        }
 
-        const modelOutput = data.steps?.find(
-            step => step.type === "model_output"
-        );
+        output.innerHTML = renderAIResponse(generatedText);
 
-        const generatedText = modelOutput?.content
-            ?.filter(item => item.type === "text")
-            .map(item => item.text)
-            .join("\n");
-
-        if (!generatedText) {
-            throw new Error("No notes generated.");
-        }
-
-        output.textContent = cleanAIResponse(generatedText);
         status.textContent = "Notes generated successfully!";
 
+
     } catch (error) {
+
         console.error(error);
+
         status.textContent = "Something went wrong.";
+
         output.textContent = error.message;
 
+
     } finally {
+
         button.disabled = false;
+
     }
+
 }
-// ================================
-// AI QUIZ GENERATOR
-// ================================
+/* =================================
+   AI QUIZ GENERATOR
+================================= */
 
 let aiQuizQuestions = [];
 let aiQuizIndex = 0;
 let aiQuizScore = 0;
 let aiQuizAnswered = false;
 
+
+/* GENERATE AI QUIZ */
+
 async function generateAIQuiz() {
 
-    const apiKey = getGeminiApiKey();
-    const subject = document.getElementById("ai-quiz-subject").value;
-    const topic = document.getElementById("ai-quiz-topic").value.trim();
+    const subject = document
+        .getElementById("ai-quiz-subject")
+        .value;
+
+    const topic = document
+        .getElementById("ai-quiz-topic")
+        .value.trim();
 
     const status = document.getElementById("ai-quiz-status");
+
     const container = document.getElementById("ai-quiz-container");
+
     const button = document.getElementById("generate-ai-quiz");
 
-    if (!apiKey || !topic) {
-        status.textContent = !apiKey
-            ? "Enter your API key in AI Tutor section."
-            : "Please enter a topic.";
+
+    if (!topic) {
+
+        status.textContent = "Please enter a topic.";
+
         return;
+
     }
 
+
     const prompt = `
-Generate exactly 5 multiple-choice questions for a college student.
+
+Generate exactly 5 multiple-choice questions for college students.
 
 Subject: ${subject}
 Topic: ${topic}
 
-Return ONLY valid JSON in this exact format:
+Return ONLY valid JSON. Do not include markdown or explanations outside JSON.
+
+Use this exact format:
+
 {
-  "questions": [
-    {
-      "question": "Question text",
-      "options": ["Option A", "Option B", "Option C", "Option D"],
-      "answer": 0,
-      "explanation": "Explanation of the correct answer"
-    }
-  ]
+    "questions": [
+        {
+            "question": "Question text",
+            "options": [
+                "Option A",
+                "Option B",
+                "Option C",
+                "Option D"
+            ],
+            "answer": 0,
+            "explanation": "Explanation of the correct answer"
+        }
+    ]
 }
 
 Rules:
-- answer must be the zero-based index of the correct option.
-- Exactly 4 options per question.
-- Questions must be accurate and topic-related.
-- Do not include Markdown or any text outside JSON.
+- Generate exactly 5 questions.
+- Every question must have exactly 4 options.
+- The answer must be a zero-based index: 0, 1, 2, or 3.
+- Provide a clear explanation.
+- Questions must be relevant to the given subject and topic.
+
 `;
 
+
     try {
+
         button.disabled = true;
-        status.textContent = "Generating your quiz...";
-        container.replaceChildren();
 
-        const response = await fetch(
-            "https://generativelanguage.googleapis.com/v1beta/interactions",
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "x-goog-api-key": apiKey
-                },
-                body: JSON.stringify({
-                    model: "gemini-3.5-flash-lite",
-                    input: prompt
-                })
+        status.textContent = "Generating your AI quiz...";
+
+        container.innerHTML = "Please wait...";
+
+
+        const response = await generateWithAI(prompt);
+
+
+        const cleanedResponse = response
+            .replace(/```json/gi, "")
+            .replace(/```/g, "")
+            .trim();
+
+
+        const parsedData = JSON.parse(cleanedResponse);
+
+        const questions = parsedData.questions;
+
+
+        if (!Array.isArray(questions) || questions.length !== 5) {
+
+            throw new Error("AI did not generate exactly 5 questions.");
+
+        }
+
+
+        for (const question of questions) {
+
+            if (
+                typeof question.question !== "string" ||
+                !Array.isArray(question.options) ||
+                question.options.length !== 4 ||
+                !Number.isInteger(question.answer) ||
+                question.answer < 0 ||
+                question.answer > 3 ||
+                typeof question.explanation !== "string"
+            ) {
+
+                throw new Error("AI generated an invalid question format.");
+
             }
-        );
 
-        const data = await response.json();
-
-        if (!response.ok) {
-            throw new Error(data.error?.message || "API request failed.");
         }
 
-        const modelOutput = data.steps?.find(
-            step => step.type === "model_output"
-        );
 
-        let result = modelOutput?.content
-            ?.filter(item => item.type === "text")
-            .map(item => item.text)
-            .join("\n");
+        aiQuizQuestions = questions;
 
-        if (!result) {
-            throw new Error("No quiz received.");
-        }
-
-        // Remove Markdown code fences if Gemini adds them
-        result = result.replace(/```json|```/gi, "").trim();
-
-        const parsed = JSON.parse(result);
-
-        if (
-            !Array.isArray(parsed.questions) ||
-            parsed.questions.length !== 5 ||
-            parsed.questions.some(q =>
-                typeof q.question !== "string" ||
-                !Array.isArray(q.options) ||
-                q.options.length !== 4 ||
-                !Number.isInteger(q.answer) ||
-                q.answer < 0 ||
-                q.answer > 3 ||
-                typeof q.explanation !== "string"
-            )
-        ) {
-            throw new Error("AI returned an invalid quiz format. Try again.");
-        }
-
-        aiQuizQuestions = parsed.questions;
         aiQuizIndex = 0;
+
         aiQuizScore = 0;
+
         aiQuizAnswered = false;
 
-        status.textContent = "Your quiz is ready!";
+
+        status.textContent = "Your AI quiz is ready!";
+
         showAIQuizQuestion();
 
+
     } catch (error) {
+
         console.error("AI Quiz Error:", error);
-        status.textContent = "Something went wrong.";
+
+        status.textContent = "Unable to generate quiz.";
+
         container.textContent = error.message;
 
+
     } finally {
+
         button.disabled = false;
+
     }
+
 }
 
 
-// Display one question
+/* SHOW CURRENT QUESTION */
 
 function showAIQuizQuestion() {
 
     const container = document.getElementById("ai-quiz-container");
-    container.replaceChildren();
 
-    const q = aiQuizQuestions[aiQuizIndex];
+    const question = aiQuizQuestions[aiQuizIndex];
 
-    const heading = document.createElement("h3");
-    heading.textContent =
-        `Question ${aiQuizIndex + 1} of ${aiQuizQuestions.length}`;
 
-    const question = document.createElement("p");
-    question.textContent = q.question;
+    if (!question) return;
 
-    container.append(heading, question);
 
-    q.options.forEach((option, index) => {
+    aiQuizAnswered = false;
 
-        const label = document.createElement("label");
-        label.style.display = "block";
-        label.style.margin = "12px 0";
 
-        const radio = document.createElement("input");
-        radio.type = "radio";
-        radio.name = "ai-quiz-option";
-        radio.value = index;
+    container.innerHTML = `
 
-        label.append(radio, document.createTextNode(" " + option));
-        container.appendChild(label);
-    });
+        <div class="ai-quiz-question">
 
-    const feedback = document.createElement("p");
-    feedback.id = "ai-quiz-feedback";
-    container.appendChild(feedback);
+            <h3>
+                Question ${aiQuizIndex + 1} / ${aiQuizQuestions.length}
+            </h3>
 
-    const submit = document.createElement("button");
-    submit.textContent = "Submit Answer";
-    submit.onclick = checkAIQuizAnswer;
-    container.appendChild(submit);
+            <h4>${question.question}</h4>
+
+            <div class="ai-quiz-options">
+
+                ${question.options.map((option, index) => `
+
+                    <button
+                        type="button"
+                        class="ai-quiz-option"
+                        onclick="checkAIQuizAnswer(${index})"
+                    >
+                        ${option}
+                    </button>
+
+                `).join("")}
+
+            </div>
+
+            <div id="ai-quiz-feedback"></div>
+
+            <button
+                type="button"
+                id="next-ai-quiz-btn"
+                onclick="nextAIQuizQuestion()"
+                style="display:none;"
+            >
+                ${aiQuizIndex === aiQuizQuestions.length - 1
+                    ? "See Result"
+                    : "Next Question"}
+            </button>
+
+        </div>
+
+    `;
+
 }
 
 
-// Check selected answer
+/* CHECK ANSWER */
 
-function checkAIQuizAnswer() {
+function checkAIQuizAnswer(selectedIndex) {
 
     if (aiQuizAnswered) return;
 
-    const selected = document.querySelector(
-        'input[name="ai-quiz-option"]:checked'
-    );
+
+    const question = aiQuizQuestions[aiQuizIndex];
 
     const feedback = document.getElementById("ai-quiz-feedback");
 
-    if (!selected) {
-        feedback.textContent = "Please select an option.";
-        return;
-    }
+    const options = document.querySelectorAll(".ai-quiz-option");
+
+    const nextButton = document.getElementById("next-ai-quiz-btn");
+
 
     aiQuizAnswered = true;
 
-    const q = aiQuizQuestions[aiQuizIndex];
-    const selectedAnswer = Number(selected.value);
 
-    if (selectedAnswer === q.answer) {
-        aiQuizScore++;
-        feedback.textContent = "Correct! " + q.explanation;
-    } else {
-        feedback.textContent =
-            "Incorrect. Correct answer: " +
-            q.options[q.answer] + ". " + q.explanation;
-    }
+    options.forEach((button, index) => {
 
-    document.querySelectorAll(
-        'input[name="ai-quiz-option"]'
-    ).forEach(radio => {
-        radio.disabled = true;
+        button.disabled = true;
+
+        if (index === question.answer) {
+
+            button.style.border = "2px solid green";
+
+        }
+
+        if (
+            index === selectedIndex &&
+            selectedIndex !== question.answer
+        ) {
+
+            button.style.border = "2px solid red";
+
+        }
+
     });
 
-    const button = document.querySelector(
-        "#ai-quiz-container button"
-    );
 
-    button.textContent =
-        aiQuizIndex === aiQuizQuestions.length - 1
-            ? "View Result"
-            : "Next Question";
+    if (selectedIndex === question.answer) {
 
-    button.onclick = nextAIQuizQuestion;
+        aiQuizScore++;
+
+        feedback.textContent = "Correct! " + question.explanation;
+
+    } else {
+
+        feedback.textContent =
+            "Incorrect. Correct answer: " +
+            question.options[question.answer] +
+            ". " +
+            question.explanation;
+
+    }
+
+
+    nextButton.style.display = "block";
+
 }
 
 
-// Move to next question
+/* NEXT QUESTION */
 
 function nextAIQuizQuestion() {
 
+    if (!aiQuizAnswered) return;
+
+
     aiQuizIndex++;
-    aiQuizAnswered = false;
+
 
     if (aiQuizIndex < aiQuizQuestions.length) {
+
         showAIQuizQuestion();
+
     } else {
+
         showAIQuizResult();
+
     }
+
 }
 
 
-// Show final score
+/* SHOW FINAL RESULT */
 
 function showAIQuizResult() {
 
     const container = document.getElementById("ai-quiz-container");
 
-    container.replaceChildren();
+    const percentage = Math.round(
+        (aiQuizScore / aiQuizQuestions.length) * 100
+    );
 
-    const heading = document.createElement("h2");
-    heading.textContent = "Quiz Completed! 🎉";
 
-    const score = document.createElement("h3");
-    score.textContent =
-        `Your Score: ${aiQuizScore} / ${aiQuizQuestions.length}`;
+    container.innerHTML = `
 
-    const message = document.createElement("p");
-    message.textContent =
-        aiQuizScore >= 4
-            ? "Excellent work!"
-            : "Keep practising. You can improve!";
+        <div class="ai-quiz-result">
 
-    const retry = document.createElement("button");
-    retry.textContent = "Generate Another Quiz";
-    retry.onclick = generateAIQuiz;
+            <h2>Quiz Completed!</h2>
 
-    container.append(heading, score, message, retry);
+            <h3>
+                Your Score: ${aiQuizScore} / ${aiQuizQuestions.length}
+            </h3>
+
+            <h3>
+                Percentage: ${percentage}%
+            </h3>
+
+            <button
+                type="button"
+                onclick="generateAIQuiz()"
+            >
+                Try Another Quiz
+            </button>
+
+        </div>
+
+    `;
+
 }
 
-// ================================
-// AI FLASHCARDS GENERATOR
-// ================================
+
+/* =================================
+   AI FLASHCARDS GENERATOR
+================================= */
 
 let flashcards = [];
-let currentFlashcard = 0;
-let flashcardRevealed = false;
+
+let currentFlashcardIndex = 0;
+
+let isFlashcardFlipped = false;
+
+
+/* GENERATE FLASHCARDS */
 
 async function generateFlashcards() {
 
-   const apiKey = getGeminiApiKey();
-    const subject = document.getElementById("flashcard-subject").value;
-    const topic = document.getElementById("flashcard-topic").value.trim();
+    const subject = document
+        .getElementById("flashcard-subject")
+        .value;
+
+    const topic = document
+        .getElementById("flashcard-topic")
+        .value.trim();
 
     const status = document.getElementById("flashcard-status");
+
     const container = document.getElementById("flashcard-container");
+
     const button = document.getElementById("flashcard-btn");
 
-    if (!apiKey) {
-        status.textContent = "Enter API key in AI Tutor section.";
-        return;
-    }
 
     if (!topic) {
+
         status.textContent = "Please enter a topic.";
+
         return;
+
     }
 
+
     const prompt = `
-Create exactly 10 educational flashcards.
+
+Generate exactly 10 educational flashcards.
 
 Subject: ${subject}
 Topic: ${topic}
 
 Return ONLY valid JSON in this format:
+
 {
-  "flashcards": [
-    {
-      "question": "What is hashing?",
-      "answer": "Hashing is a technique..."
-    }
-  ]
+    "flashcards": [
+        {
+            "question": "Question or concept",
+            "answer": "Clear and simple answer"
+        }
+    ]
 }
 
 Rules:
-- Exactly 10 flashcards.
-- Questions should test important concepts.
-- Answers should be short, clear and accurate.
-- No Markdown outside JSON.
+- Generate exactly 10 flashcards.
+- Every flashcard must have a question and answer.
+- Keep answers simple, accurate and useful for revision.
+- Do not include markdown outside JSON.
+
 `;
 
+
     try {
+
         button.disabled = true;
-        status.textContent = "Creating flashcards...";
-        container.replaceChildren();
 
-        const response = await fetch(
-            "https://generativelanguage.googleapis.com/v1beta/interactions",
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "x-goog-api-key": apiKey
-                },
-                body: JSON.stringify({
-                    model: "gemini-3.5-flash-lite",
-                    input: prompt
-                })
-            }
-        );
+        status.textContent = "Generating flashcards...";
 
-        const data = await response.json();
+        container.textContent = "Please wait...";
 
-        if (!response.ok) {
-            throw new Error(data.error?.message || "API request failed.");
-        }
 
-        const modelOutput = data.steps?.find(
-            step => step.type === "model_output"
-        );
+        const response = await generateWithAI(prompt);
 
-        let result = modelOutput?.content
-            ?.filter(item => item.type === "text")
-            .map(item => item.text)
-            .join("\n");
 
-        if (!result) {
-            throw new Error("No flashcards received.");
-        }
+        const cleanedResponse = response
+            .replace(/```json/gi, "")
+            .replace(/```/g, "")
+            .trim();
 
-        result = result.replace(/```json|```/gi, "").trim();
 
-        const parsed = JSON.parse(result);
+        const parsedData = JSON.parse(cleanedResponse);
+
+        const generatedCards = parsedData.flashcards;
+
 
         if (
-            !Array.isArray(parsed.flashcards) ||
-            parsed.flashcards.length !== 10 ||
-            parsed.flashcards.some(card =>
+            !Array.isArray(generatedCards) ||
+            generatedCards.length !== 10
+        ) {
+
+            throw new Error("AI did not generate exactly 10 flashcards.");
+
+        }
+
+
+        for (const card of generatedCards) {
+
+            if (
                 typeof card.question !== "string" ||
                 typeof card.answer !== "string" ||
                 !card.question.trim() ||
                 !card.answer.trim()
-            )
-        ) {
-            throw new Error("Invalid flashcard format. Please try again.");
+            ) {
+
+                throw new Error("AI generated an invalid flashcard.");
+
+            }
+
         }
 
-        flashcards = parsed.flashcards;
-        currentFlashcard = 0;
-        flashcardRevealed = false;
 
-        status.textContent = "Flashcards generated successfully!";
+        flashcards = generatedCards;
+
+        currentFlashcardIndex = 0;
+
+        isFlashcardFlipped = false;
+
+
+        status.textContent = "10 flashcards generated successfully!";
+
         showFlashcard();
 
+
     } catch (error) {
+
         console.error("Flashcard Error:", error);
-        status.textContent = "Something went wrong.";
+
+        status.textContent = "Unable to generate flashcards.";
+
         container.textContent = error.message;
 
+
     } finally {
+
         button.disabled = false;
+
     }
+
 }
 
 
-// Display current flashcard
+/* SHOW FLASHCARD */
 
 function showFlashcard() {
 
     const container = document.getElementById("flashcard-container");
-    container.replaceChildren();
 
-    const card = flashcards[currentFlashcard];
+    if (flashcards.length === 0) return;
 
-    const counter = document.createElement("p");
-    counter.textContent =
-        `Card ${currentFlashcard + 1} of ${flashcards.length}`;
 
-    const flashcard = document.createElement("div");
-    flashcard.className = "flashcard";
+    const card = flashcards[currentFlashcardIndex];
 
-    const label = document.createElement("h3");
-    label.textContent = flashcardRevealed ? "Answer" : "Question";
 
-    const content = document.createElement("p");
-    content.textContent = flashcardRevealed
-        ? card.answer
-        : card.question;
+    container.innerHTML = `
 
-    flashcard.append(label, content);
+        <div class="flashcard">
 
-    flashcard.onclick = toggleFlashcard;
+            <p>
+                Card ${currentFlashcardIndex + 1} / ${flashcards.length}
+            </p>
 
-    const revealButton = document.createElement("button");
-    revealButton.textContent = flashcardRevealed
-        ? "Show Question"
-        : "Reveal Answer";
+            <div
+                class="flashcard-content"
+                onclick="toggleFlashcard()"
+            >
 
-    revealButton.onclick = toggleFlashcard;
+                <h3>
+                    ${isFlashcardFlipped ? "Answer" : "Question"}
+                </h3>
 
-    const nextButton = document.createElement("button");
-    nextButton.textContent =
-        currentFlashcard === flashcards.length - 1
-            ? "Restart Cards"
-            : "Next Card";
+                <p>
+                    ${isFlashcardFlipped ? card.answer : card.question}
+                </p>
 
-    nextButton.onclick = nextFlashcard;
+                <small>Click to flip</small>
 
-    container.append(
-        counter,
-        flashcard,
-        revealButton,
-        nextButton
-    );
+            </div>
+
+            <div class="flashcard-controls">
+
+                <button
+                    type="button"
+                    onclick="previousFlashcard()"
+                    ${currentFlashcardIndex === 0 ? "disabled" : ""}
+                >
+                    Previous
+                </button>
+
+                <button
+                    type="button"
+                    onclick="nextFlashcard()"
+                    ${currentFlashcardIndex === flashcards.length - 1
+                        ? "disabled"
+                        : ""}
+                >
+                    Next
+                </button>
+
+            </div>
+
+        </div>
+
+    `;
+
 }
 
 
-// Reveal answer or show question
+/* FLIP FLASHCARD */
 
 function toggleFlashcard() {
-    flashcardRevealed = !flashcardRevealed;
+
+    isFlashcardFlipped = !isFlashcardFlipped;
+
     showFlashcard();
+
 }
 
 
-// Move to next flashcard
+/* NEXT FLASHCARD */
 
 function nextFlashcard() {
 
-    currentFlashcard++;
+    if (currentFlashcardIndex < flashcards.length - 1) {
 
-    if (currentFlashcard >= flashcards.length) {
-        currentFlashcard = 0;
+        currentFlashcardIndex++;
+
+        isFlashcardFlipped = false;
+
+        showFlashcard();
+
     }
 
-    flashcardRevealed = false;
-    showFlashcard();
 }
-// =================================
-// AI STUDY PLANNER
-// =================================
+
+
+/* PREVIOUS FLASHCARD */
+
+function previousFlashcard() {
+
+    if (currentFlashcardIndex > 0) {
+
+        currentFlashcardIndex--;
+
+        isFlashcardFlipped = false;
+
+        showFlashcard();
+
+    }
+
+}
+/* =================================
+   AI STUDY PLANNER
+================================= */
 
 async function generateStudyPlan() {
 
-    const apiKey = getGeminiApiKey();
-
-    const subject = document
-        .getElementById("planner-subject").value;
-
-    const syllabus = document
-        .getElementById("planner-syllabus").value.trim();
-
-    const examDate = document
-        .getElementById("planner-exam-date").value;
-
-    const hours = Number(
-        document.getElementById("planner-hours").value
-    );
+    const subject = document.getElementById("planner-subject").value;
+    const syllabus = document.getElementById("planner-syllabus").value.trim();
+    const examDate = document.getElementById("planner-exam-date").value;
+    const hours = Number(document.getElementById("planner-hours").value);
 
     const status = document.getElementById("planner-status");
     const output = document.getElementById("planner-output");
     const button = document.getElementById("generate-planner-btn");
 
-    if (!apiKey) {
-        status.textContent = "Enter your API key in AI Tutor section.";
-        return;
-    }
-
     if (!syllabus || !examDate || !hours) {
-        status.textContent = "Please fill all the fields.";
+        status.textContent = "Please fill all fields.";
         return;
     }
 
+    const selectedDate = new Date(examDate + "T00:00:00");
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
-    const selectedDate = new Date(examDate + "T00:00:00");
-
-    if (selectedDate <= today) {
+    if (selectedDate < today) {
         status.textContent = "Please select a future exam date.";
         return;
     }
 
     if (hours < 1 || hours > 16) {
-        status.textContent = "Enter study hours between 1 and 16.";
+        status.textContent = "Daily study hours must be between 1 and 16.";
         return;
     }
 
     const prompt = `
 You are an expert academic study planner.
 
-Create a realistic personalized study timetable.
-
 Subject: ${subject}
 Syllabus: ${syllabus}
-Exam Date: ${examDate}
-Daily Available Study Hours: ${hours}
+Exam date: ${examDate}
+Available study hours per day: ${hours}
 
-Instructions:
-1. Divide the syllabus into daily study tasks.
-2. Prioritize difficult and important topics.
-3. Include revision sessions.
-4. Include practice questions and mock tests.
-5. Include short breaks.
-6. Keep the daily study time within ${hours} hours.
-7. Make sure all syllabus topics are covered before the exam.
-8. Include a final revision plan.
+Create a practical study plan until the exam date.
 
-Use this output structure:
+Include:
+1. Topic-wise daily schedule.
+2. Revision sessions.
+3. Practice questions and mock tests.
+4. Breaks and buffer time.
+5. Final revision strategy.
 
-STUDY PLAN OVERVIEW
-
-DAILY TIMETABLE
-For each date:
-- Topics to study
-- Suggested time allocation
-- Practice tasks
-- Revision tasks
-
-IMPORTANT TIPS
-- Give practical exam preparation tips.
-
-Keep the plan clear, realistic and easy to follow.
-Do not schedule dates after the exam date.
+Keep the plan realistic and easy to follow.
+Use clear headings and bullet points.
 `;
 
     try {
+
         button.disabled = true;
-        status.textContent = "Creating your personalized study plan...";
-        output.textContent = "Please wait while AI prepares your timetable.";
+        status.textContent = "Creating your study plan...";
+        output.textContent = "Please wait...";
 
-        const response = await fetch(
-            "https://generativelanguage.googleapis.com/v1beta/interactions",
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "x-goog-api-key": apiKey
-                },
-                body: JSON.stringify({
-                    model: "gemini-3.5-flash-lite",
-                    input: prompt
-                })
-            }
-        );
+        const generatedText = await generateWithAI(prompt);
 
-        const data = await response.json();
-
-        if (!response.ok) {
-            throw new Error(
-                data.error?.message || "API request failed."
-            );
-        }
-
-        const modelOutput = data.steps?.find(
-            step => step.type === "model_output"
-        );
-
-        const generatedPlan = modelOutput?.content
-            ?.filter(item => item.type === "text")
-            .map(item => item.text)
-            .join("\n");
-
-        if (!generatedPlan) {
-            throw new Error("No study plan received.");
-        }
-
-        output.textContent = cleanAIResponse(generatedPlan);
-        status.textContent = "Your study plan is ready!";
+        output.innerHTML = renderAIResponse(generatedText);
+        status.textContent = "Study plan generated successfully!";
 
     } catch (error) {
-        console.error("Study Planner Error:", error);
 
-        status.textContent = "Something went wrong.";
+        console.error("Study Planner Error:", error);
+        status.textContent = "Unable to generate study plan.";
         output.textContent = error.message;
 
     } finally {
+
         button.disabled = false;
+
     }
 }
 
+
+/* =================================
+   AI NOTES SUMMARIZER
+================================= */
+
 async function summarizeNotes() {
 
-    const apiKey = getGeminiApiKey();
-
     const subject = document.getElementById("summary-subject").value;
-
-    const material = document.getElementById("summary-input").value.trim();
+    const notes = document.getElementById("summary-input").value.trim();
 
     const status = document.getElementById("summary-status");
     const output = document.getElementById("summary-output");
     const button = document.getElementById("summarize-btn");
 
-    if (!apiKey) {
-        status.textContent = "Enter your Gemini API key in AI Tutor section.";
-        return;
-    }
-
-    if (!material) {
-        status.textContent = "Please paste your study material first.";
+    if (!notes) {
+        status.textContent = "Please enter your notes first.";
         return;
     }
 
     const prompt = `
-    You are an expert academic study assistant.
+You are an expert study notes summarizer.
 
-    Subject: ${subject}
+Subject: ${subject}
 
-    Study Material:
-    ${material}
+Original notes:
+${notes}
 
-    Generate a clear and student-friendly summary.
+Summarize these notes without changing their meaning.
 
-    Include:
-    1. Short Summary
-    2. Important Concepts
-    3. Key Points
-    4. Important Definitions
-    5. Quick Revision Notes
-    6. Five Important Exam Questions
+Include:
+1. Short summary.
+2. Important definitions.
+3. Key concepts.
+4. Important formulas (if any).
+5. Important exam points.
 
-    Use simple language.
-    Keep the explanation accurate and well structured.
-    Do not add information unrelated to the provided material.
-    `;
+Use simple language and bullet points.
+Do not add unrelated information.
+`;
 
     try {
 
         button.disabled = true;
-        status.textContent = "AI is summarizing your notes...";
+        status.textContent = "Summarizing your notes...";
         output.textContent = "Please wait...";
 
-        const response = await fetch(
-            "https://generativelanguage.googleapis.com/v1beta/interactions",
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "x-goog-api-key": apiKey
-                },
-                body: JSON.stringify({
-                    model: "gemini-3.5-flash-lite",
-                    input: prompt
-                })
-            }
-        );
+        const generatedText = await generateWithAI(prompt);
 
-        const data = await response.json();
-
-        if (!response.ok) {
-            throw new Error(data.error?.message || "API request failed.");
-        }
-
-        const modelOutput = data.steps?.find(
-            step => step.type === "model_output"
-        );
-
-        const summary = modelOutput?.content
-            ?.filter(item => item.type === "text")
-            .map(item => item.text)
-            .join("\n");
-
-        if (!summary) {
-            throw new Error("No summary received from AI.");
-        }
-
-        output.textContent = cleanAIResponse(summary);
-        status.textContent = "Your summary is ready!";
+        output.innerHTML = renderAIResponse(generatedText);
+        status.textContent = "Notes summarized successfully!";
 
     } catch (error) {
 
         console.error("Summarizer Error:", error);
-
-        status.textContent = "Something went wrong.";
+        status.textContent = "Unable to summarize notes.";
         output.textContent = error.message;
 
     } finally {
+
         button.disabled = false;
+
     }
 }
-function getGeminiApiKey() {
-    return window.GEMINI_API_KEY || "";
-}
+
+
+/* =================================
+   AI RESPONSE CLEANER
+================================= */
+
 function cleanAIResponse(text) {
 
+    if (typeof text !== "string") {
+        return "";
+    }
+
     return text
-        .replace(/^#{1,6}\s*/gm, "")
-        .replace(/\*\*(.*?)\*\*/g, "$1")
-        .replace(/\*(.*?)\*/g, "$1")
-        .replace(/__(.*?)__/g, "$1")
-        .replace(/_(.*?)_/g, "$1")
-        .replace(/```[\w]*\n?/g, "")
+        .replace(/```html/gi, "")
+        .replace(/```javascript/gi, "")
+        .replace(/```json/gi, "")
         .replace(/```/g, "")
-        .replace(/^>\s*/gm, "")
         .trim();
 
 }
+
+
+/* =================================
+   CONNECT FUNCTIONS TO HTML
+================================= */
+
+// AI Features
+
+window.askStudyTutor = askStudyTutor;
+window.generateAINotes = generateAINotes;
+window.generateAIQuiz = generateAIQuiz;
+window.generateFlashcards = generateFlashcards;
+window.generateStudyPlan = generateStudyPlan;
+window.summarizeNotes = summarizeNotes;
+
+// Existing study features
+
+window.openTopic = openTopic;
+window.showSubject = showSubject;
+window.checkPracticeAnswer = checkPracticeAnswer;
+window.completeTopic = completeTopic;
+
+// Quiz and flashcard features
+
+window.showAIQuizQuestion = showAIQuizQuestion;
+window.checkAIQuizAnswer = checkAIQuizAnswer;
+window.nextAIQuizQuestion = nextAIQuizQuestion;
+window.showAIQuizResult = showAIQuizResult;
+
+window.showFlashcard = showFlashcard;
+window.toggleFlashcard = toggleFlashcard;
+window.nextFlashcard = nextFlashcard;
+window.previousFlashcard = previousFlashcard;
+
+console.log("AI Study Assistant functions connected successfully!");
