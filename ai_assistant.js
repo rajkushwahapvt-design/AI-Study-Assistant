@@ -826,6 +826,101 @@ async function generateWithAI(prompt) {
     return generatedText.trim();
 
 }
+// =================================
+// AI RESPONSE RENDERER
+// =================================
+
+function renderAIResponse(text) {
+
+    if (!text) return "";
+
+    // Escape HTML for security
+    function escapeHTML(str) {
+        return str
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
+
+    const lines = text.split(/\r?\n/);
+
+    let html = "";
+    let inList = false;
+
+    for (let line of lines) {
+
+        line = line.trim();
+
+        if (!line) {
+            if (inList) {
+                html += "</ul>";
+                inList = false;
+            }
+            continue;
+        }
+
+        let safeLine = escapeHTML(line);
+
+        // Bold text
+        safeLine = safeLine.replace(
+            /\*\*(.*?)\*\*/g,
+            "<strong>$1</strong>"
+        );
+
+        // Inline code
+        safeLine = safeLine.replace(
+            /`(.*?)`/g,
+            "<code>$1</code>"
+        );
+
+        // Headings
+        if (/^#{1,3}\s/.test(line)) {
+
+            if (inList) {
+                html += "</ul>";
+                inList = false;
+            }
+
+            const heading = safeLine.replace(/^#{1,3}\s/, "");
+
+            html += `<h3>${heading}</h3>`;
+
+        }
+
+        // Bullet points
+        else if (/^[-*]\s/.test(line)) {
+
+            if (!inList) {
+                html += "<ul>";
+                inList = true;
+            }
+
+            html += `<li>${safeLine.replace(/^[-*]\s/, "")}</li>`;
+
+        }
+
+        // Normal paragraphs
+        else {
+
+            if (inList) {
+                html += "</ul>";
+                inList = false;
+            }
+
+            html += `<p>${safeLine}</p>`;
+
+        }
+
+    }
+
+    if (inList) {
+        html += "</ul>";
+    }
+
+    return html;
+}
 
 
 /* =================================
